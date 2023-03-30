@@ -4,10 +4,10 @@ class Node:
         self.next = None
 
     # getter
-    def get_data(self) -> str:
+    def get_data(self) -> any:
         return self.data
 
-    def get_next(self) -> str:
+    def get_next(self) -> any:
         return self.next
 
     # setter
