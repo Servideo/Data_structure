@@ -1,63 +1,78 @@
 import { Node } from "./node.js";
 
 export class LinkedList {
+  #head;
+  #size;
   constructor() {
-    this.head = null;
-    this.size = 0;
+    this.#head = null;
+    this.#size = 0;
   }
+
+      // getter
+      getHead(){
+        return this.#head;
+    }
+
+    getSize(){
+        return this.#size;
+    }
+
+    // setter
+    setHead(head){
+        this.#head = head;
+    }
 
   insertEnd(head) {
     let newNode = new Node(head);
 
-    if (this.head == null) {
-      this.head = newNode;
+    if (this.#head == null) {
+      this.#head = newNode;
       // actualiza el tamaño de la lista
-      this.size++;
+      this.#size++;
       return;
     }
-    let lastNode = this.head;
-    while (lastNode.next != null) {
-      lastNode = lastNode.next;
+    let lastNode = this.#head;
+    while (lastNode.getNext() != null) {
+      lastNode = lastNode.getNext();
     }
-    lastNode.next = newNode;
-    this.size++;
+    lastNode.setNext(newNode);
+    this.#size++;
   }
   print() {
-    let msg = "";
-    if (this.head == null) return;
-    let temp = this.head;
-    while (temp) {
+    let msg='';
+    if (this.#head == null) return;
+    let temp = this.#head;
+    while (temp != null) {
       if (msg.trim().length == 0) {
-        msg = `${temp.data} `;
-        temp = temp.next;
-        continue;
+        msg = `${temp.getData()} `;
+      }else{
+        msg += `${temp.getData()} `;
       }
-      msg += `${temp.data} `;
-      temp = temp.next;
+      temp = temp.getNext();
     }
     return msg;
   }
   // usando recursividad
   // reverse(head)
   // {
-  //     if(head.data == null || head.next == null) return head;
-  //     let res = this.reverse(head.next);
-  //     head.next.next = head;
-  //     head.next = null;
+  //     if(head.getData() == null || head.getNext() == null) return head;
+  //     let res = this.reverse(head.getNext());
+  //     head.getNext().setNext(head);
+  //     head.setNext(null);
   //     return res;
   // }
 
   // usando un while
   reverse() {
     let prev = null;
-    let current = this.head;
+    let current = this.#head;
     let next;
     while (current != null) {
-      next = current.next;
-      current.next = prev;
+      next = current.getNext();
+      current.setNext(prev);
       prev = current;
       current = next;
     }
-    this.head = prev;
+    this.#head = prev;
   }
 }

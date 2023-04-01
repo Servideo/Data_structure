@@ -12,10 +12,10 @@ def main():
         for i in element:
             llist.insert_end(i)
         print(f'lista sin invertir\n{llist}')
-        print(f'tamaño: {llist.size}')
+        print(f'tamaño: {llist.get_size()}')
         # usando recursividad
         # start = perf_counter()
-        # llist.head = llist.reverse(llist.head)
+        # llist.set_head(llist.reverse(llist.get_head()))
         # usando un while
         llist.reserve()
         # end = perf_counter() - start
