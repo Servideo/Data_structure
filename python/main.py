@@ -1,5 +1,5 @@
 from module.linked_list import Linked_list
-
+from time import perf_counter
 
 def main():
     llist = Linked_list()
@@ -8,10 +8,18 @@ def main():
         element = input('Ingresa los elementos a la lista:\n').split()
         if len(element) == 0:
             raise Exception('No se reciben espacios en blanco')
-        element = list(map(llist.insert_end, element))
+        # inserto los elementos de la lista element en llist
+        for i in element:
+            llist.insert_end(i)
         print(f'lista sin invertir\n{llist}')
         print(f'tamaño: {llist.size}')
-        llist.head = llist.reverse(llist.head)
+        # usando recursividad
+        # start = perf_counter()
+        # llist.head = llist.reverse(llist.head)
+        # usando un while
+        llist.reserve()
+        # end = perf_counter() - start
+        # print(f'tiempo transcurrido: {end:0.4f}')
         print(f'lista invertida\n{llist}')
 
     except Exception as e:
