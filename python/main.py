@@ -1,5 +1,5 @@
 from module.linked_list import Linked_list
-from time import perf_counter
+# from time import perf_counter
 
 def main():
     llist = Linked_list()
@@ -12,16 +12,16 @@ def main():
         for i in element:
             llist.insert_end(i)
         print(f'lista sin invertir\n{llist}')
-        print(f'tamaño: {llist.get_size()}')
+        print(f'tamaño: {llist.size}')
         # usando recursividad
         # start = perf_counter()
         # llist.set_head(llist.reverse(llist.get_head()))
         # usando un while
         llist.reserve()
         # end = perf_counter() - start
-        # print(f'tiempo transcurrido: {end:0.4f}')
+        # print(f'tiempo transcurrido: {end:0.8f}')
         print(f'lista invertida\n{llist}')
-
+        
     except Exception as e:
         print(e)
 

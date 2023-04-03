@@ -7,27 +7,30 @@ class Linked_list:
         self.__head: Node | None = None
         self.__size = 0
         
-        # getter
-    def get_head(self) -> Node:
+    # getter
+    @property
+    def head(self) -> Node:
         return self.__head
     
-    def get_size(self) -> int:
+    @property
+    def size(self) -> int:
         return self.__size
     # setter
-    def set_head(self,head) -> None:
+    @head.setter
+    def head(self,head) -> None:
         self.__head = head
-    
-    def insert_end(self, head: any) -> None:
+        
+    def insert_end(self,head: any) -> None:
         new_data = Node(head)
         if self.__head is None:
             self.__head = new_data
-            # actualiza el tamañp de la lista
+            # actualiza el tamaño de la lista
             self.__size += 1
             return
         last = self.__head
-        while last.get_next() != None:
-            last = last.get_next()
-        last.set_next(new_data)
+        while last.next:
+            last = last.next
+        last.next = new_data
         self.__size += 1
 
     def __str__(self) -> str:
@@ -35,12 +38,12 @@ class Linked_list:
         if self.__head is None:
             return
         temp = self.__head
-        while temp is not None:
+        while temp:
             if len(msg.strip()) == 0:
-                msg = f'{temp.get_data()} '
+                msg = f'{temp.data} '
             else:
-                msg += f'{temp.get_data()} '
-            temp = temp.get_next()
+                msg += f'{temp.data} '
+            temp = temp.next
         return msg
 
     # usuando recursividad
@@ -48,9 +51,9 @@ class Linked_list:
     # def reverse(self, head: Node | None) -> Node:
     #     if head.get_data() is None or head.get_next() is None:
     #         return head
-    #     res = self.reverse(head.get_next())
-    #     head.get_next().set_next(head)
-    #     head.set_next(None)
+    #     res = self.reverse(head.next)
+    #     head.next.next = head
+    #     head.next = None
     #     return res
 
     # usando un while
@@ -59,9 +62,9 @@ class Linked_list:
         prev = None
         current = self.__head
         
-        while current is not None:
-            next = current.get_next()
-            current.set_next(prev)  
+        while current:
+            next = current.next
+            current.next = prev  
             prev = current
             current = next
 
