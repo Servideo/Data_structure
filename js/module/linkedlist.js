@@ -32,7 +32,7 @@ export class LinkedList {
       return;
     }
     let lastNode = this.#head;
-    while (lastNode.getNext() != null) {
+    while (lastNode.getNext()) {
       lastNode = lastNode.getNext();
     }
     lastNode.setNext(newNode);
@@ -42,7 +42,7 @@ export class LinkedList {
     let msg='';
     if (this.#head == null) return;
     let temp = this.#head;
-    while (temp != null) {
+    while (temp) {
       if (msg.trim().length == 0) {
         msg = `${temp.getData()} `;
       }else{
@@ -67,7 +67,7 @@ export class LinkedList {
     let prev = null;
     let current = this.#head;
     let next;
-    while (current != null) {
+    while (current) {
       next = current.getNext();
       current.setNext(prev);
       prev = current;

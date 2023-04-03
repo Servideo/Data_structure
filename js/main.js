@@ -6,7 +6,7 @@ function main() {
   let llist = new LinkedList();
   try
   {
-    let element = '1 2 3 4 5'.split(' ');
+    let element = prompt('Ingresa datos aquí').split(' ');
     if (element.includes('')) throw new Error('No se reciben espacios en blanco');
     element.forEach(i => llist.insertEnd(i)); 
     console.log(`lista sin invertir\n${llist.print()}`);
