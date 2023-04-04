@@ -43,11 +43,7 @@ export class LinkedList {
     if (this.#head == null) return;
     let temp = this.#head;
     while (temp) {
-      if (msg.trim().length == 0) {
-        msg = `${temp.getData()} `;
-      }else{
-        msg += `${temp.getData()} `;
-      }
+      msg +=`${temp.getData()} `;
       temp = temp.getNext();
     }
     return msg;

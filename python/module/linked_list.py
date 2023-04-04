@@ -39,10 +39,7 @@ class Linked_list:
             return
         temp = self.__head
         while temp:
-            if len(msg.strip()) == 0:
-                msg = f'{temp.data} '
-            else:
-                msg += f'{temp.data} '
+            msg += f'{temp.data} '
             temp = temp.next
         return msg
 
