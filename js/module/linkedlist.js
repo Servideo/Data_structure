@@ -8,20 +8,15 @@ export class LinkedList {
     this.#size = 0;
   }
 
-      // getter
-      getHead(){
-        return this.#head;
-    }
+  // getter
+  getHead() {
+    return this.#head.getData();
+  }
 
-    getSize(){
-        return this.#size;
-    }
-
-    // setter
-    setHead(head){
-        this.#head = head;
-    }
-
+  getSize() {
+    return this.#size;
+  }
+  
   insertEnd(head) {
     let newNode = new Node(head);
 
@@ -39,26 +34,15 @@ export class LinkedList {
     this.#size++;
   }
   print() {
-    let msg='';
+    let msg = "";
     if (this.#head == null) return;
     let temp = this.#head;
     while (temp) {
-      msg +=`${temp.getData()} `;
+      msg += `${temp.getData()} `;
       temp = temp.getNext();
     }
     return msg;
   }
-  // usando recursividad
-  // reverse(head)
-  // {
-  //     if(head.getData() == null || head.getNext() == null) return head;
-  //     let res = this.reverse(head.getNext());
-  //     head.getNext().setNext(head);
-  //     head.setNext(null);
-  //     return res;
-  // }
-
-  // usando un while
   reverse() {
     let prev = null;
     let current = this.#head;

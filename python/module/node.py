@@ -7,7 +7,7 @@ class Node:
     @property
     def data(self) -> any:
         return self.__data
-    
+
     @property
     def next(self) -> any:
         return self.__next
@@ -16,7 +16,7 @@ class Node:
     @data.setter
     def data(self, data) -> None:
         self.__data = data
-        
+
     @next.setter
     def next(self, next) -> None:
         self.__next = next

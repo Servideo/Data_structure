@@ -2,25 +2,21 @@ from .node import Node
 
 
 class Linked_list:
-    
+
     def __init__(self):
         self.__head: Node | None = None
         self.__size = 0
-        
+
     # getter
     @property
     def head(self) -> Node:
-        return self.__head
-    
+        return self.__head.data
+
     @property
     def size(self) -> int:
         return self.__size
-    # setter
-    @head.setter
-    def head(self,head) -> None:
-        self.__head = head
-        
-    def insert_end(self,head: any) -> None:
+    
+    def insert_end(self, head: any) -> None:
         new_data = Node(head)
         if self.__head is None:
             self.__head = new_data
@@ -43,27 +39,14 @@ class Linked_list:
             temp = temp.next
         return msg
 
-    # usuando recursividad
-
-    # def reverse(self, head: Node | None) -> Node:
-    #     if head.get_data() is None or head.get_next() is None:
-    #         return head
-    #     res = self.reverse(head.next)
-    #     head.next.next = head
-    #     head.next = None
-    #     return res
-
-    # usando un while
-    
     def reserve(self) -> None:
         prev = None
         current = self.__head
-        
+
         while current:
             next = current.next
-            current.next = prev  
+            current.next = prev
             prev = current
             current = next
 
         self.__head = prev
-
