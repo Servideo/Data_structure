@@ -11,10 +11,12 @@ def main():
         # inserto los elementos de la lista element en llist
         for i in element:
             llist.insert_end(i)
-        print(f'lista sin invertir\n{llist}')
+        print('Lista sin invertir: ', end='')
+        llist.show()
         print(f'tamaño: {llist.size}')
         llist.reserve()
-        print(f'lista invertida\n{llist}')
+        print('Lista invertida: ', end='')
+        llist.show()
 
     except Exception as e:
         print(e)
