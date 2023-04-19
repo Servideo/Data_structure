@@ -24,10 +24,11 @@ public:
     {
         if (index == 0)
             return this->head->data;
-        if (index == size - 1)
+        else if (index == size - 1)
             return this->last->data;
         Node<T> *current = this->head->next;
-        for (int i = 1; i < index; i++) current = current->next;
+        for (int i = 1; i < index; i++)
+            current = current->next;
         return current->data;
     }
     int getSize()

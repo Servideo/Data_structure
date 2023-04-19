@@ -15,8 +15,10 @@ int main()
     int count1;
     int count2 = lperson.size() - 1;
     bool flag = false;
-    while (count1 <= count2){
-        if(flag){
+    while (count1 <= count2)
+    {
+        if (flag)
+        {
             llexpo.add(lperson[count2]);
             count2--;
             flag = false;
