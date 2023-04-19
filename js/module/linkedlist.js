@@ -14,7 +14,13 @@ export class LinkedList {
   getSize() {
     return this.#size;
   }
-
+  get(index) {
+    if (index === 0) return this.#head.getData();
+    else if (index === this.#size - 1) return this.#last.getData();
+    let current = this.#head.getNext();
+    for (let i = 1; i < index; i++) current = current.getNext();
+    return current.getData();
+  }
   insertEnd(data) {
     let newNode = new Node(data);
 

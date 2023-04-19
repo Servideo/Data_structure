@@ -8,9 +8,20 @@ class Linked_list:
         self.__last: Node | None = None
         self.__size = 0
 
+    # getter
     @property
     def size(self) -> int:
         return self.__size
+
+    def get(self, index: int) -> any:
+        if index == 0:
+            return self.__head.data
+        elif index == self.size - 1:
+            return self.__last
+        current: Node = self.__head.next
+        for i in range(1, self.size - 1):
+            current = current.next
+        return current.data
 
     def insert_end(self, data: any) -> None:
         new_data = Node(data)
