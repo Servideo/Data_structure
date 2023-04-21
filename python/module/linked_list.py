@@ -12,7 +12,11 @@ class Linked_list:
     @property
     def size(self) -> int:
         return self.__size
-
+    # metodos
+    def is_empty(self) -> bool:
+        if(self.__head is None): return True
+        return False
+    
     def get(self, index: int) -> any:
         if index == 0:
             return self.__head.data
@@ -25,46 +29,39 @@ class Linked_list:
 
     def insert_end(self, data: any) -> None:
         new_data = Node(data)
-        if self.__head is None:
+        # actualiza el tamaño de la lista
+        self.__size += 1
+        if self.is_empty():
             self.__head = new_data
-            # actualiza el tamaño de la lista
-            self.__size += 1
             return
-        elif self.__head.next is None:
+        elif self.__last is None:
             self.__last = new_data
             self.__head.next = self.__last
-            self.__last.next = self.__head
-            self.__size += 1
             return
-        new_data.next = self.__last.next
         self.__last.next = new_data
         self.__last = new_data
-        self.__size += 1
 
-    def show(self) -> None:
-        if self.__head is None:
-            return
+    def __str__(self) -> str:
+        if self.is_empty(): return "Lista vacia"
+        msg:str
         temp = self.__head
-        print(temp.data, end='')
+        msg = f'{temp.data}'
         temp = temp.next
-        while temp != self.__head:
-            print(f' {temp.data}', end='')
+        while temp:
+            msg += f' {temp.data}'
             temp = temp.next
-        print()
+        return msg
 
     def reserve(self) -> None:
-        if self.__head is None:
+        if self.is_empty():
             return
         self.__last = self.__head
         prev = None
         current = self.__head
-        while True:
+        while current:
             next = current.next
             current.next = prev
             prev = current
             current = next
-            if current == self.__head:
-                break
-
-        self.__head.next = prev
+            
         self.__head = prev

@@ -23,23 +23,20 @@ export class LinkedList {
   }
   insertEnd(data) {
     let newNode = new Node(data);
-
+    this.#size++;
     if (this.#head == null) {
       this.#head = newNode;
       // actualiza el tamaño de la lista
-      this.#size++;
       return;
-    } else if (this.#head.getNext() == null) {
+    } else if (this.#last == null) {
       this.#last = newNode;
       this.#head.setNext(this.#last);
       this.#last.setNext(this.#head);
-      this.#size++;
       return;
     }
     newNode.setNext(this.#last.getNext());
     this.#last.setNext(newNode);
     this.#last = newNode;
-    this.#size++;
   }
   print() {
     if (this.#head == null) return;

@@ -6,28 +6,37 @@
 #include <vector>
 using namespace std;
 
+template<typename T>
+void ordenExpo(vector<T> array, LinkedList<T>& llist);
+
 int main()
 {
     LinkedList<string> llexpo;
     string input;
     getline(cin, input);
     vector<string> lperson = split(input);
-    int count1;
-    int count2 = lperson.size() - 1;
+    ordenExpo<string>(lperson, llexpo);
+    cout << llexpo.toString()<<endl;
+    return 0;
+}
+
+
+template<typename T>
+void ordenExpo(vector<T> array,LinkedList<T>& llist){
+    int count1 = 0;
+    int count2 = array.size() - 1;
     bool flag = false;
     while (count1 <= count2)
     {
         if (flag)
         {
-            llexpo.add(lperson[count2]);
+            llist.add(array[count2]);
             count2--;
             flag = false;
             continue;
         }
-        llexpo.add(lperson[count1]);
+        llist.add(array[count1]);
         count1++;
         flag = true;
     }
-    llexpo.printlist();
-    return 0;
 }
