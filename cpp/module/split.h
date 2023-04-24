@@ -7,7 +7,8 @@ vector<string> split(string text, string sep = " ")
     int start = 0;
     int end = text.find(sep);
     
-    while (end != -1){
+    while (end != -1)
+    {
         element.push_back(text.substr(start, end - start));
         start = end + sep.size();
         end = text.find(sep, start);

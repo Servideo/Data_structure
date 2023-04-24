@@ -10,7 +10,7 @@ def main():
             raise Exception('No se reciben espacios en blanco')
         # inserto los elementos de la lista element en llist
         for i in element:
-            llist.insert_end(i)
+            llist.add(i)
         print('Lista sin invertir: ', end='')
         llist.show()
         print(f'tamaño: {llist.size}')

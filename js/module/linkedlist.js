@@ -21,7 +21,7 @@ export class LinkedList {
     for (let i = 1; i < index; i++) current = current.getNext();
     return current.getData();
   }
-  insertEnd(data) {
+  add(data) {
     let newNode = new Node(data);
     this.#size++;
     if (this.#head == null) {
@@ -38,7 +38,30 @@ export class LinkedList {
     this.#last.setNext(newNode);
     this.#last = newNode;
   }
-  print() {
+  pop(index){
+    if(this.isEmpty()) return;
+    if(index>= this.#size) return;
+    let current = this.head;
+    let prev = this.#head;
+    if(index == 0){
+        this.#head = current.next;
+        this.#size--;
+        return;
+    }
+    current = current.next;
+    for(let i = 1; i < index; i++){
+        prev = current;
+        current = current.next;
+    }
+    if(index == this.#size - 1){
+        prev.next = this.last.next;
+        this.last = prev;
+        this.#size--;
+    }
+    prev.next = current.next;
+    this.#size--; 
+}
+  toString() {
     if (this.#head == null) return;
     let temp = this.#head;
     let msg = `${temp.getData()}`;

@@ -26,6 +26,6 @@ public class app {
         LinkedList<String> llexpo = new LinkedList<>();
         ordenExpo(lnickname, llexpo);
         System.out.print(llexpo.toString());
-
+        sc.close();
     }
 }

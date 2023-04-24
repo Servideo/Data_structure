@@ -6,11 +6,11 @@ function main() {
     let element = prompt("Ingresa datos aquí").split(" ");
     if (element.includes(""))
       throw new Error("No se reciben espacios en blanco");
-    element.forEach((i) => llist.insertEnd(i));
-    console.log(`lista sin invertir\n${llist.print()}`);
+    element.forEach((i) => llist.add(i));
+    console.log(`lista sin invertir\n${llist.toString()}`);
     console.log(`tamaño ${llist.getSize()}`);
     llist.reverse();
-    console.log(`Lista invertida:\n${llist.print()}`);
+    console.log(`Lista invertida:\n${llist.toString()}`);
   } catch (e) {
     console.log(e.message);
   }

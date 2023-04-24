@@ -6,11 +6,11 @@ def orden_expo(array:list[any], llist:Linked_list) -> None:
     flag:bool = False
     while count1 <= count:
         if flag:
-            llist.insert_end(array[count])
+            llist.add(array[count])
             count -=1
             flag = False
             continue
-        llist.insert_end(array[count1])
+        llist.add(array[count1])
         count1 +=1
         flag = True
     

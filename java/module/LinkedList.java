@@ -1,7 +1,5 @@
 package module;
 
-import module.Node;
-
 public class LinkedList<T> {
     private Node<T> head;
     private Node<T> last;
@@ -15,17 +13,17 @@ public class LinkedList<T> {
 
     // getter
     public T get(int index) {
-        if (index == 0) return this.head.data;
-        else if (index == this.size - 1) return this.last.data;
+        if(this.isEmpty()) return null;
         Node<T> current = this.head;
-        for (int i = 1; i < index; i++) {
-            current = current.next;
-        }
+        if (index == 0) return current.data;
+        else if (index == this.size - 1) return this.last.data;
+        current = current.next;
+        for (int i = 1; i < index; i++) current = current.next;
         return current.data;
     }
 
     public int getSize() {
-        return size;
+        return this.size;
     }
 
     // metodos
@@ -46,6 +44,30 @@ public class LinkedList<T> {
         }
         this.last.next = newNode;
         this.last = newNode;
+    }
+    public void pop(int index){
+        if(this.isEmpty()) return;
+        else if (index >= this.size) return;
+        Node<T> current = this.head;
+        Node<T> prev = this.head;
+        if(index == 0){
+            this.head = current.next;
+            this.size--;
+            return;
+        }
+        current = current.next;
+        for(int i = 1; i < index; i++){
+            prev = current;
+            current = current.next;
+        }
+        if(index == this.size - 1){
+            prev.next = this.last.next;
+            this.last = prev;
+            this.size--;
+            return;
+        }
+        prev.next = current.next;
+        this.size--; 
     }
 
     public String toString() {
