@@ -36,15 +36,15 @@ public class comun {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Scanner sc2 = new Scanner(System.in);
-        String input1 = sc.nextLine();
+        Scanner sc1 = new Scanner(System.in);
+        Scanner sc2 = sc1;
+        String input1 = sc1.nextLine();
         String input2 = sc2.nextLine();
         LinkedList<Integer> lnumber1 = split(input1);
         LinkedList<Integer> lnumber2 = split(input2);
         removeCommon(lnumber1, lnumber2);
         System.out.printf("%s\n%s", lnumber1.toString(),lnumber2.toString());
-        sc.close();
+        sc1.close();
         sc2.close();
 
 
