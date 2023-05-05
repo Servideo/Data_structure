@@ -1,18 +1,18 @@
 from module.linked_list import Linked_list
 
 def orden_expo(array:list[any], llist:Linked_list) -> None:
-    count1 = 0
-    count = len(array) - 1
-    flag:bool = False
-    while count1 <= count:
-        if flag:
-            llist.add(array[count])
-            count -=1
-            flag = False
+    index1:int = 0
+    index2:int = len(array) - 1
+    change:bool = False
+    while index1 <= index2:
+        if change:
+            llist.add(array[index2])
+            index2 -=1
+            change = False
             continue
-        llist.add(array[count1])
-        count1 +=1
-        flag = True
+        llist.add(array[index1])
+        index1 +=1
+        change = True
     
 
 def main() -> None:

@@ -1,6 +1,14 @@
-template<class T>
+#include <cstddef>
+
+template <class T>
 struct Node{
     public:
-        T data;
-        Node<T>* next;
+    Node *prev, *next;
+    T data;
+    Node(T data)
+    {
+        this->prev = NULL;
+        this->data = data;
+        this->next = NULL;
+    }
 };

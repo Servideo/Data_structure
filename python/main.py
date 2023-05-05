@@ -5,18 +5,17 @@ def main():
     llist = Linked_list()
 
     try:
-        element = input('Ingresa los elementos a la lista:\n').split()
+        element: list[str] = input(
+            'Ingresa los elementos a la lista:\n').split()
         if len(element) == 0:
             raise Exception('No se reciben espacios en blanco')
         # inserto los elementos de la lista element en llist
         for i in element:
             llist.add(i)
-        print('Lista sin invertir: ', end='')
-        llist.show()
+        print(f'Lista sin invertir: {llist} ', end='')
         print(f'tamaño: {llist.size}')
-        llist.reserve()
-        print('Lista invertida: ', end='')
-        llist.show()
+        llist.reverse()
+        print(f'Lista invertida: {llist}', end='')
 
     except Exception as e:
         print(e)

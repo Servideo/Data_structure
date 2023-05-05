@@ -9,32 +9,31 @@ LinkedList<string> split(string text,string sep=" ")
     int start = 0;
     int end = text.find(sep);
     while (end != -1){
-        llist.add(text.substr(start, end));
+        llist.add(text.substr(start, end - start));
         start = end + sep.size();
         end = text.find(sep, start);
     };
-    llist.add(text.substr(start, end));
-    // llist.add(text.substr(start, end - start));
+    llist.add(text.substr(start));
     return llist;
 }
 
 void ordenExpo(LinkedList<string>& llist1,LinkedList<string>& llist2)
 {
-    int count1 = 0;
-    int count2 = llist1.getSize() - 1;
-    bool flag = false;
-    while (count1 <= count2)
+    int index1 = 0;
+    int index2 = llist1.getSize() - 1;
+    bool changeIndex = false;
+    while (index1 <= index2)
     {
-        if (flag)
+        if (changeIndex)
         {
-            llist2.add(llist1.get(count2));
-            count2--;
-            flag = false;
+            llist2.add(llist1.get(index2));
+            index2--;
+            changeIndex = false;
             continue;
         }
-        llist2.add(llist1.get(count1));
-        count1++;
-        flag = true;
+        llist2.add(llist1.get(index1));
+        index1++;
+        changeIndex = true;
     }
 }
 

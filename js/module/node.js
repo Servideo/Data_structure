@@ -1,11 +1,16 @@
 export class Node {
   #data;
   #next;
+  #prev;
   constructor(data) {
+    this.#prev = this.#next = null;
     this.#data = data;
-    this.#next = null;
   }
   // getter
+  getprev() {
+    return this.#prev;
+  }
+
   getData() {
     return this.#data;
   }
@@ -15,6 +20,10 @@ export class Node {
   }
 
   // setter
+  setPrev(prev) {
+    this.#prev = prev;
+  }
+
   setData(data) {
     this.#data = data;
   }

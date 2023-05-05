@@ -4,8 +4,8 @@ from module.linked_list import Linked_list
 
 def split(text:str, sep:str = ' ') -> Linked_list:
     llist:Linked_list = Linked_list()
-    start = 0
-    end = text.find(sep)
+    start:int = 0
+    end:int = text.find(sep)
     while end != -1:
         llist.add(text[start:end])
         start = end + len(sep)
@@ -15,8 +15,8 @@ def split(text:str, sep:str = ' ') -> Linked_list:
     
     
 def orden_expo(llist1:Linked_list, llist2:Linked_list) -> None:
-    index1 = 0
-    index2 = llist1.size - 1
+    index1:int = 0
+    index2:int = llist1.size - 1
     change:bool = False
     while index1 <= index2:
         if change:

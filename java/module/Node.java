@@ -1,11 +1,12 @@
 package module;
 
 public class Node<T> {
-    T data;
-    Node<T> next;
 
-    public Node(T data) {
-        this.data = data;
-        this.next = null;
-    }
+  Node<T> prev, next;
+  T data;
+
+  public Node(T data) {
+    this.prev = this.next = null;
+    this.data = data;
+  }
 }

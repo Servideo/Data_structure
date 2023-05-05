@@ -1,18 +1,17 @@
 #include "node.h"
-#include <iostream>
 #include <string>
 #include <sstream>
-using namespace std;
+using std::string, std::stringstream;
 
 template <class T>
 class LinkedList
 {
 private:
     // Atributos
-    Node<T> *head;
-    Node<T> *last;
+    Node<T> *head, *last;
     int size;
-    string convertToString(T element){
+    string convertToString(T element)
+    {
         stringstream s;
         s << element;
         return s.str();
@@ -22,19 +21,22 @@ public:
     // constructor
     LinkedList<T>()
     {
-        this->head = NULL;
-        this->last = NULL;
+        this->head = this->last = NULL;
         this->size = 0;
     }
     // getter
     T get(int index)
     {
-        if (this->isEmpty()) return 0;
+        if (this->isEmpty())
+            return 0;
         Node<T> *current = this->head;
-        if (index == 0) return current->data;
-        else if (index == this->size - 1) return this->last->data;
+        if (index == 0)
+            return current->data;
+        else if (index == this->size - 1)
+            return this->last->data;
         current = current->next;
-        for (int i = 1; i < index; i++) current = current->next;
+        for (int i = 1; i < index; i++)
+            current = current->next;
         return current->data;
     }
     int getSize()
@@ -42,67 +44,68 @@ public:
         return this->size;
     }
     // metodos
-    bool isEmpty(){
-        if(this->head == NULL) return true;
+    bool isEmpty()
+    {
+        if (this->head == NULL)
+            return true;
         return false;
     }
 
     void add(T data)
     {
         this->size++;
-        Node<T> *newNode = new Node<T>;
-        newNode->data = data;
+        Node<T>* newNode = new Node(data);
         if (this->isEmpty())
         {
-            this->head = newNode;
-            this->head->next = last;
-            return;
-        }
-        else if (last == NULL)
-        {
-            this->last = newNode;
-            head->next = this->last;
-            last->next = NULL;
+            this->head = this->last = newNode;
             return;
         }
         this->last->next = newNode;
         this->last = newNode;
-        this->last->next = NULL;
     }
     void pop(int index)
     {
-        if (this->isEmpty()) return;
-        else if(index >= this->size) return;
+        if (this->isEmpty() || index >= this->size)
+            return;
         Node<T> *current = this->head;
         Node<T> *prev = this->head;
-        if(index == 0){
+        if (index == 0)
+        {
             this->head = current->next;
             this->size--;
+            delete(current);
             return;
         }
         current = current->next;
-        for(int i = 1; i < index; i++)
+        for (int i = 1; i < index; i++)
         {
             prev = current;
             current = current->next;
         }
-        if(index == this->size - 1)
+        if (index == this->size - 1)
         {
             prev->next = this->last->next;
             this->last = prev;
             this->size--;
+            delete(current);
             return;
         }
         prev->next = current->next;
         this->size--;
+        delete(current);
+    }
+
+    void clear()
+    {
+        this->head = this->last = NULL;
     }
 
     string toString()
     {
-        if (this->isEmpty()) return "Lista vacia";
-        string msg;
+        if (this->isEmpty())
+            return "[]";
         Node<T> *temp = this->head;
-        msg = this->convertToString(temp->data);
+        string msg = this->convertToString(temp->data);
         temp = temp->next;
         while (temp)
         {
@@ -113,10 +116,11 @@ public:
     }
     void reverse()
     {
-        if (this->isEmpty()) return;
+        if (this->isEmpty() || this->size < 2)
+            return;
         Node<T> *prev = NULL;
-        Node<T> *next;
         Node<T> *current = this->head;
+        Node<T> *next;
         this->last = this->head;
         while (current)
         {
