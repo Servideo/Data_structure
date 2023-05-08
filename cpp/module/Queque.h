@@ -25,6 +25,35 @@ public:
         this->maxSize = maxSize;
     }
 
+    Node<T>* getFront()
+    {
+        if(this->isEmpty())
+            return NULL;
+        return this->front;
+    }
+
+    Node<T>* getBack()
+    {
+        if(this->isEmpty())
+            return NULL;
+        return this->rear;
+    }
+
+    int getSize()
+    {
+        return this->size;
+    }
+
+    int getMaxSize()
+    {
+        return this->maxSize;
+    }
+
+    void setMaxSize(int maxSize = 0)
+    {
+        if(maxSize < this->maxSize) return;
+        this->maxSize = maxSize;
+    }
     bool isEmpty()
     {
         if (this->front == NULL)
@@ -34,7 +63,7 @@ public:
 
     void enqueue(T data)
     {
-        if(this->maxSize != 0 && this->size >= this->maxSize)
+        if(this->maxSize > 0 && this->size >= this->maxSize)
             return;
         Node<T> *temp = new Node(data);
         this->size++;
@@ -60,29 +89,13 @@ public:
             this->rear == NULL;
         delete (temp);
     }
-    T getFront()
-    {
-        if(this->isEmpty())
-            return 0;
-        return this->front->data;
-    }
 
-    T getBack()
-    {
-        if(this->isEmpty())
-            return 0;
-        return this->rear->data;
-    }
-
-    int getSize()
-    {
-        return this->size;
-    }
-    
     void clear()
     {
+        Node<T> *temp = this->front;
         this->front = this->rear = NULL;
         this->size = this->maxSize = 0;
+        delete(temp);
     }
     
     string toString()

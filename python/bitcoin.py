@@ -1,9 +1,7 @@
 from module.linked_list import Linked_list
-from functools import cache
 from time import perf_counter
 
 
-@cache
 def split(text: str, sep: str = ' ') -> Linked_list:
     number: Linked_list = Linked_list()
     start: int = 0
@@ -15,8 +13,6 @@ def split(text: str, sep: str = ' ') -> Linked_list:
     number.add(int(text[start:]))
     return number
 
-
-@cache
 def day_to_sell(llist: Linked_list) -> None:
     lday: Linked_list = Linked_list()
     maximun_size = llist.size

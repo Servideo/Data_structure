@@ -21,14 +21,28 @@ public class Queue<T> {
         this.size = 0;
     }
     
-    public T getFront(){
-        return this.front.data;
+    public Node<T> getFront(){
+        return this.front;
     }
-    public T getBack(){
-        return this.rear.data;
+    public Node<T> getBack(){
+        return this.rear;
     }
     public int getSize(){
         return this.size;
+    }
+
+    public int maxSize(){
+        return this.maxSize;
+    }
+
+    public void setMaxSize(int maxSize){
+        if(maxSize < this.maxSize) return;
+        this.maxSize = maxSize;
+    }
+
+    public void setMaxSize(){
+        if(maxSize < this.maxSize) return;
+        this.maxSize = 0;
     }
     
     public boolean isEmpty(){
@@ -36,9 +50,10 @@ public class Queue<T> {
             return true;
         return false;
     }
+
     
     public void enqueue(T data){
-        if(this.maxSize != 0 && this.size >= this.maxSize)
+        if(this.maxSize > 0 && this.size >= this.maxSize)
             return;
         this.size++;
         Node<T> newNode = new Node<>(data);

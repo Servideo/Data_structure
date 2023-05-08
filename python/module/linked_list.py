@@ -1,15 +1,22 @@
 from .node import Node
+from typing import Any
 
 class Linked_list:
-    # constructor
     def __init__(self):
         self.__head = self.__last = None
         self.__size = 0
 
-    # getter
     @property
     def size(self) -> int:
         return self.__size
+    
+    @property
+    def head(self):
+        return self.__head
+    
+    @property
+    def tail(self):
+        return self.__last
         
     def get(self, index: int) -> any:
         if self.is_empty(): return None
@@ -22,15 +29,13 @@ class Linked_list:
             current = current.next
         return current.data
 
-    # metodos
     def is_empty(self) -> bool:
         if (self.__head is None):
             return True
         return False
 
-    def add(self, data: any) -> None:
+    def add(self, data: Any) -> None:
         new_data: Node = Node(data)
-        # actualiza el tamaño de la lista
         self.__size += 1
         if self.is_empty():
             self.__head = self.__last = new_data

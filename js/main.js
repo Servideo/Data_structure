@@ -1,3 +1,5 @@
+"use strict";
+
 import { LinkedList } from "./module/linkedlist.js";
 
 function main() {

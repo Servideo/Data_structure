@@ -10,7 +10,6 @@ public class LinkedList<T> {
     this.size = 0;
   }
 
-  // getter
   public T get(int index) {
     if (this.isEmpty()) return null;
     Node<T> current = this.head;
@@ -26,7 +25,6 @@ public class LinkedList<T> {
     return this.size;
   }
 
-  // metodos
   public boolean isEmpty() {
     if (this.head == null) return true;
     return false;

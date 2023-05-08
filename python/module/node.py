@@ -1,31 +1,33 @@
+from typing import Any
+
 class Node:
-    def __init__(self, data: any):
+    def __init__(self, data: Any):
         self.__prev: Node | None = None
         self.__data: any = data
         self.__next: Node | None = None
 
     # getter
     @property
-    def data(self) -> any:
+    def data(self) -> Any:
         return self.__data
 
     @property
-    def next(self) -> any:
+    def next(self) -> Any:
         return self.__next
 
     @property
-    def prev(self) -> any:
+    def prev(self) -> Any:
         return self.__prev
 
     # setter
     @data.setter
-    def data(self, data: any) -> None:
+    def data(self, data: Any) -> None:
         self.__data = data
 
     @next.setter
-    def next(self, next) -> None:
+    def next(self, next: Any) -> None:
         self.__next = next
 
     @prev.setter
-    def prev(self, prev) -> None:
+    def prev(self, prev: Any) -> None:
         self.__prev = prev

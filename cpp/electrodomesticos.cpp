@@ -4,14 +4,14 @@
 
 using namespace std;
 
-Queque<string> split(string text, string separator = " ",int limit = 0)
+Queque<string> split(string text, string separator = " ", int limit = 0)
 {
     Queque<string> result(limit);
     int start = 0;
     int end = text.find(separator);
-    while(end != -1)
+    while (end != -1)
     {
-        result.enqueue(text.substr(start,end - start));
+        result.enqueue(text.substr(start, end - start));
         start = end + separator.size();
         end = text.find(separator, start);
     }
@@ -21,8 +21,8 @@ Queque<string> split(string text, string separator = " ",int limit = 0)
 
 string input()
 {
-    string msg ="";
-    getline(cin,msg);
+    string msg = "";
+    getline(cin, msg);
     return msg;
 }
 
@@ -32,21 +32,21 @@ Queque<string> insertQueque()
     int iter;
     iter = stoi(input());
     element = input();
-    Queque<string> queue = split(element," ", iter);
+    Queque<string> queue = split(element, " ", iter);
     return queue;
 }
 
-string deliveryAtSmall(Queque<string>& product,Queque<string>& numberProduct)
+string deliveryAtSmall(Queque<string> &product, Queque<string> &numberProduct)
 {
     string reportOfSmall = "";
     int numberofDeliveries = numberProduct.getSize();
-    for (int i = 0;i < numberofDeliveries ; i++)
+    for (int i = 0; i < numberofDeliveries; i++)
     {
-        int numberOfDelivery = stoi(numberProduct.getFront());
+        int numberOfDelivery = stoi(numberProduct.getFront()->data);
         Queque<string> small(numberOfDelivery);
-        if(product.getSize() == 0)
+        if (product.getSize() == 0)
         {
-            if(i == 0)
+            if (i == 0)
             {
                 reportOfSmall += small.toString();
                 break;
@@ -54,21 +54,21 @@ string deliveryAtSmall(Queque<string>& product,Queque<string>& numberProduct)
             reportOfSmall += "\n" + small.toString();
             continue;
         }
-        for (int j = 0; j < numberOfDelivery ; j++)
+        for (int j = 0; j < numberOfDelivery; j++)
         {
-           if(product.getSize() == 0)
-               break;
-            small.enqueue(product.getFront());
+            if (product.getSize() == 0)
+                break;
+            small.enqueue(product.getFront()->data);
             product.dequeue();
         }
-            if(i == 0)
-            {
-                reportOfSmall += small.toString();
-                numberProduct.dequeue();
-                continue;
-            }
-            reportOfSmall += "\n" + small.toString();
+        if (i == 0)
+        {
+            reportOfSmall += small.toString();
             numberProduct.dequeue();
+            continue;
+        }
+        reportOfSmall += "\n" + small.toString();
+        numberProduct.dequeue();
     }
     return reportOfSmall;
 }
@@ -77,25 +77,25 @@ string deliverySystem(string numberCase)
 {
     string reporDelivery = "";
     int round = stoi(numberCase);
-    for (int i = 0; i < round;i++)
+    for (int i = 0; i < round; i++)
     {
         Queque<string> goods = insertQueque();
         Queque<string> numberOfSmalls = insertQueque();
         reporDelivery += deliveryAtSmall(goods, numberOfSmalls);
         goods.clear();
         numberOfSmalls.clear();
-        if(round > 1 && i < round - 1)
-    	{
-        	reporDelivery += "\n";
-    	}
+        if (round > 1 && i < round - 1)
+        {
+            reporDelivery += "\n";
+        }
     }
     return reporDelivery;
 }
 
-int main(int argc, const char* argv[])
+int main(int argc, const char *argv[])
 {
     string numberCase;
-    getline(cin,numberCase);
+    getline(cin, numberCase);
     cout << deliverySystem(numberCase);
     return 0;
 }

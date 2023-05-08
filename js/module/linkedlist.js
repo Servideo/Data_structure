@@ -1,4 +1,6 @@
-import { Node } from "./node.js";
+"use strict";
+
+import Node from "./node.js";
 
 export class LinkedList {
   #head;
@@ -9,7 +11,6 @@ export class LinkedList {
     this.#size = 0;
   }
 
-  // getter
   getSize() {
     return this.#size;
   }
@@ -28,7 +29,6 @@ export class LinkedList {
 
   add(data) {
     let newNode = new Node(data);
-    // actualiza el tamaño de la lista
     this.#size++;
     if (this.isEmpty()) {
       this.#head = this.#last = newNode;
@@ -59,6 +59,7 @@ export class LinkedList {
     prev.next = current.next;
     this.#size--;
   }
+  
   toString() {
     if (this.isEmpty()) return "[]";
     let temp = this.#head;
@@ -70,6 +71,7 @@ export class LinkedList {
     }
     return msg;
   }
+
   reverse() {
     if (this.isEmpty() || this.#size < 2) return;
     this.#last = this.#head;

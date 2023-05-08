@@ -7,7 +7,6 @@ template <class T>
 class LinkedList
 {
 private:
-    // Atributos
     Node<T> *head, *last;
     int size;
     string convertToString(T element)
@@ -18,13 +17,11 @@ private:
     }
 
 public:
-    // constructor
     LinkedList<T>()
     {
         this->head = this->last = NULL;
         this->size = 0;
     }
-    // getter
     T get(int index)
     {
         if (this->isEmpty())
