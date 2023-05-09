@@ -2,7 +2,7 @@
 
 import Node from "./node.js";
 
-export class queque {
+export class Queque {
   #front;
   #rear;
   #maxSize;
@@ -36,8 +36,8 @@ export class queque {
 
   enqueue(data) {
     this.#size++;
+    let newNode = new Node(data);
     if (this.isEmpty()) {
-      newNode = new Node(data);
       this.#rear = this.#rear = newNode;
       return;
     }

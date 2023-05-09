@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import module.LinkedList;
+
 public class bitcoin {
     public static LinkedList<Integer> split(String text){
         String sep = " ";

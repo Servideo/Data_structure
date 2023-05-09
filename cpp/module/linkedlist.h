@@ -1,7 +1,7 @@
 #include "node.h"
 #include <string>
 #include <sstream>
-using std::string, std::stringstream;
+using std::string;
 
 template <class T>
 class LinkedList
@@ -11,7 +11,7 @@ private:
     int size;
     string convertToString(T element)
     {
-        stringstream s;
+        std::stringstream s;
         s << element;
         return s.str();
     }

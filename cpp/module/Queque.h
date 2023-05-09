@@ -1,7 +1,8 @@
 #include "node.h"
 #include <sstream>
 #include <string>
-using std::stringstream, std::string;
+
+using std::string;
 
 template <class T>
 class Queque
@@ -12,7 +13,7 @@ private:
     int size;
     string convertToString(T data)
     {
-        stringstream text;
+        std::stringstream text;
         text << data;
         return text.str();
     }
@@ -54,6 +55,7 @@ public:
         if(maxSize < this->maxSize) return;
         this->maxSize = maxSize;
     }
+    
     bool isEmpty()
     {
         if (this->front == NULL)

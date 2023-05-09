@@ -24,9 +24,11 @@ public class Queue<T> {
     public Node<T> getFront(){
         return this.front;
     }
+
     public Node<T> getBack(){
         return this.rear;
     }
+
     public int getSize(){
         return this.size;
     }
@@ -65,12 +67,14 @@ public class Queue<T> {
         this.rear.next = newNode;
         this.rear = newNode;
     }
+
     public void clear(){
         if(this.isEmpty())
             return;
         this.front = this.rear = null;
         this.maxSize = this.size = 0;
     }
+    
     public void dequeue(){
         if(this.isEmpty())
             return;
