@@ -7,6 +7,10 @@ int main()
     LinkedList<int> number;
     number.add(1);
     number.add(2);
+    number.add(3);
+    number.add(4);
+    cout << number.toString() << endl;
+    number.pop(2);
     cout << number.toString() << endl;
     // LinkedList<string> person;
     // cout<<"Escribe algunos numeros"<<endl;

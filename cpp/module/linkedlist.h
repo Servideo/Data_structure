@@ -64,12 +64,13 @@ public:
     {
         if (this->isEmpty() || index >= this->size)
             return;
+        int length = this->getSize();
+        this->size--;
         Node<T> *current = this->head;
         Node<T> *prev = this->head;
         if (index == 0)
         {
             this->head = current->next;
-            this->size--;
             delete(current);
             return;
         }
@@ -79,16 +80,14 @@ public:
             prev = current;
             current = current->next;
         }
-        if (index == this->size - 1)
+        if (index == length - 1)
         {
             prev->next = this->last->next;
             this->last = prev;
-            this->size--;
             delete(current);
             return;
         }
         prev->next = current->next;
-        this->size--;
         delete(current);
     }
 

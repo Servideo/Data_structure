@@ -41,9 +41,10 @@ export class LinkedList {
     if (this.isEmpty() || index >= this.#size) return;
     let current = this.head;
     let prev = this.#head;
+    let length = this.getSize();
+    this.#size--;
     if (index == 0) {
       this.#head = current.next;
-      this.#size--;
       return;
     }
     current = current.next;
@@ -51,13 +52,11 @@ export class LinkedList {
       prev = current;
       current = current.next;
     }
-    if (index == this.#size - 1) {
+    if (index == length - 1) {
       prev.next = this.last.next;
       this.last = prev;
-      this.#size--;
     }
     prev.next = current.next;
-    this.#size--;
   }
   
   toString() {

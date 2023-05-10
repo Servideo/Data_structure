@@ -48,21 +48,20 @@ class Linked_list:
             return
         current: Node = self.__head
         prev: Node = self.__head
+        length: int = self.size
+        self.__size -= 1
         if index == 0:
             self.__head = current.next
-            self.__size -= 1
             return
         current = current.next
         for _ in range(1, index):
             prev = current
             current = current.next
-        if index == self.__size - 1:
+        if index == length - 1:
             prev.next = self.__last.next
             self.__last = prev
-            self.__size -= 1
             return
         prev.next = current.next
-        self.__size -= 1
 
     def __str__(self) -> str:
         if self.is_empty():
