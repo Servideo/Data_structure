@@ -10,15 +10,35 @@ public class LinkedList<T> {
     this.size = 0;
   }
 
-  public T get(int index) {
+  public Node<T> get(int index) {
     if (this.isEmpty()) return null;
     Node<T> current = this.head;
-    if (index == 0) return current.data; else if (
+    if (index == 0) return current; else if (
       index == this.size - 1
-    ) return this.last.data;
+    ) return this.last;
     current = current.next;
     for (int i = 1; i < index; i++) current = current.next;
-    return current.data;
+    return current;
+  }
+
+  public Node<T> getHead(){
+    return this.head;
+  }
+
+  public Node<T> getTail(){
+    return this.last;
+  }
+
+  public void setHead(Node<T> head){
+    this.head = head;
+  }
+
+  public void setTail(Node<T> tail){
+    this.last = tail;
+  }
+
+  public void setSize(int size){
+    this.size = size;
   }
 
   public int getSize() {
@@ -45,9 +65,10 @@ public class LinkedList<T> {
     if (this.isEmpty() || index >= this.size) return;
     Node<T> current = this.head;
     Node<T> prev = this.head;
+    int length = this.getSize();
+    this.size--;
     if (index == 0) {
       this.head = current.next;
-      this.size--;
       return;
     }
     current = current.next;
@@ -55,14 +76,12 @@ public class LinkedList<T> {
       prev = current;
       current = current.next;
     }
-    if (index == this.size - 1) {
+    if (index == length - 1) {
       prev.next = this.last.next;
       this.last = prev;
-      this.size--;
       return;
     }
     prev.next = current.next;
-    this.size--;
   }
 
   public String toString() {
@@ -91,4 +110,5 @@ public class LinkedList<T> {
     }
     this.head = prev;
   }
+
 }

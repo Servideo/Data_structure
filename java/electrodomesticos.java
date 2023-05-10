@@ -3,8 +3,8 @@ import module.Queue;
 
 public class electrodomesticos {
 
-  public static Queue<String> split(String text, int limit) {
-    Queue<String> result = new Queue<>(limit);
+  public static Queue<String> split(String text, int size) {
+    Queue<String> result = new Queue<>(size);
     String separator = " ";
     int start = 0;
     int end = text.indexOf(separator);
@@ -20,9 +20,7 @@ public class electrodomesticos {
     return result;
   }
 
-  public static Queue<String> insertQueue() {
-    Scanner sc1 = new Scanner(System.in);
-    Scanner sc2 = sc1;
+  public static Queue<String> insertQueue(Scanner sc1, Scanner sc2) {
     String iter;
     int size;
     size = Integer.parseInt(sc1.nextLine());
@@ -64,11 +62,19 @@ public class electrodomesticos {
     return reportOfSmall;
   }
 
-  public static String SystemDelivery(int numberCase) {
+  public static String SystemDelivery(){
+    Scanner sc1 = new Scanner(System.in);
+    Scanner sc2;
+    Scanner sc3;
     String reporDelivery = "";
-    for (int i = 0; i < numberCase; i++) {
-      Queue<String> product = insertQueue();
-      Queue<String> numberProduct = insertQueue();
+    int numberCase = Integer.parseInt(sc1.nextLine());
+    for(int i = 0; i < numberCase; i++){
+      sc2 = sc1;
+      sc3 = sc1;
+      Queue<String> product = insertQueue(sc2, sc3);
+      sc2 = sc1;
+      sc3 = sc1;
+      Queue<String> numberProduct = insertQueue(sc2, sc3);
       reporDelivery += deliveryAtSmall(product, numberProduct);
       product.clear();
       numberProduct.clear();
@@ -76,16 +82,10 @@ public class electrodomesticos {
         reporDelivery += "\n";
       }
     }
+    sc1.close();
     return reporDelivery;
   }
-
   public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int numberCase;
-    String result;
-    numberCase = sc.nextInt();
-    result = SystemDelivery(numberCase);
-    System.out.print(result);
-    sc.close();
+    System.out.print(SystemDelivery());
   }
 }

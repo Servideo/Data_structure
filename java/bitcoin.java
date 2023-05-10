@@ -28,17 +28,17 @@ public class bitcoin {
                break;
             }
             for(int j = 1; j < limit; j++){
-                if(llist.get(0) > llist.get(j) && j != limit - 1){
+                if(llist.get(0).data > llist.get(j).data && j != limit - 1){
                     count++;
                     continue;
-                }else if(llist.get(j) > llist.get(0)){
+                }else if(llist.get(j).data > llist.get(0).data){
                     count++;
                     break;
                 }
-                else if(j == limit -1 && llist.get(0) > llist.get(j)){
+                else if(j == limit -1 && llist.get(0).data > llist.get(j).data){
                     count = 0;
                     break;
-                }else if(j == limit -1 && llist.get(0) == llist.get(j)){
+                }else if(j == limit -1 && llist.get(0).data == llist.get(j).data){
                     count = 0;
                     break;
                 }

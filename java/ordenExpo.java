@@ -22,12 +22,12 @@ public class ordenExpo {
         boolean change = false;
         while(index1 <= index2){
             if (change){
-                llist2.add(llist1.get(index2));
+                llist2.add(llist1.get(index2).data);
                 index2--;
                 change = false;
                 continue;
             }
-            llist2.add(llist1.get(index1));
+            llist2.add(llist1.get(index1).data);
             index1++;
             change = true;
         }
