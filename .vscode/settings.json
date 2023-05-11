@@ -3,7 +3,8 @@
         "xstring": "cpp",
         "ostream": "cpp",
         "iostream": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "stdexcept": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "python.analysis.typeCheckingMode": "off"

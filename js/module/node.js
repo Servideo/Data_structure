@@ -8,8 +8,8 @@ export class Node {
     this.#prev = this.#next = null;
     this.#data = data;
   }
-  // getter
-  getprev() {
+
+  getPrev() {
     return this.#prev;
   }
 
@@ -21,7 +21,6 @@ export class Node {
     return this.#next;
   }
 
-  // setter
   setPrev(prev) {
     this.#prev = prev;
   }

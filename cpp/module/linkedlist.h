@@ -24,8 +24,8 @@ public:
     }
     T get(int index)
     {
-        if (this->isEmpty())
-            return 0;
+        if (index >= this->size || index < 0)
+            throw std::invalid_argument("List index out range");
         Node<T> *current = this->head;
         if (index == 0)
             return current->data;
@@ -36,6 +36,7 @@ public:
             current = current->next;
         return current->data;
     }
+
     int getSize()
     {
         return this->size;
@@ -60,10 +61,11 @@ public:
         this->last->next = newNode;
         this->last = newNode;
     }
+
     void pop(int index)
     {
-        if (this->isEmpty() || index >= this->size)
-            return;
+        if (index >= this->size || index < 0)
+            throw std::invalid_argument("List index out range");
         int length = this->getSize();
         this->size--;
         Node<T> *current = this->head;
@@ -110,6 +112,7 @@ public:
         }
         return msg;
     }
+    
     void reverse()
     {
         if (this->isEmpty() || this->size < 2)

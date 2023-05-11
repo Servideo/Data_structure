@@ -42,7 +42,7 @@ class Queue:
 
     def dequeue(self) -> None:
         if self.is_empty():
-            return
+            raise Exception("Queue is empty")
         self.__front = self.__front.next
         if self.__front is None:
             self.__rear = None
@@ -54,6 +54,7 @@ class Queue:
 
     def clear(self) -> None:
         self.__front = self.__rear = None
+        self.__max_size = self.__size = 0
 
     def __str__(self) -> str:
         if self.is_empty():

@@ -1,6 +1,6 @@
 "use strict";
 
-import Node  from "./node";
+import {Node} from "./node";
 
 export class Stack{
     #top;
@@ -35,7 +35,7 @@ export class Stack{
     }
 
     pop(){
-        if(this.isEmpty()) return;
+        if(this.isEmpty()) throw new Error("Stack is empty");
         let temp = this.#top;
         this.#top = temp.getNext();
         this.#size--;

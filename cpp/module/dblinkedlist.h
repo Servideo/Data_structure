@@ -23,10 +23,25 @@ public:
         this->size = 0;
     }
 
-    T get(int index)
+    Node<T>* getHead()
     {
-        if (this->isEmpty())
-            return 0;
+        return this->head;
+    }
+
+    Node<T>* getTail()
+    {
+        return this->tail;
+    }
+
+    int getSize()
+    {
+        return this->size;
+    }
+    
+    Node<T>* get(int index)
+    {
+        if (index >= this->size || index < 0)
+           throw std::invalid_argument("List index out range");
         else if (index == 0)
             return this->head;
         else if (index == this->size - 1)
@@ -51,10 +66,11 @@ public:
         this->tail = newNode;
 
     }
+    
     void pop(int index)
     {
-        if(this->isEmpty() || index >= this->size)
-            return;
+        if(index >= this->size || index < 0)
+            throw std::invalid_argument("List index out range");
         Node<T>* temp = this->head;
         int lenght = this->getSize();
         this->size--;
@@ -83,10 +99,6 @@ public:
         prev->next = temp->next;
         temp->next->prev = prev;
         delete(temp);
-    }
-    int getSize()
-    {
-        return this->size;
     }
 
     bool isEmpty()

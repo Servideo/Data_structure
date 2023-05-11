@@ -81,7 +81,7 @@ public:
     void dequeue()
     {
         if (this->isEmpty())
-            return;
+            throw std::invalid_argument("Queue is empty");
         Node<T> *temp = this->front;
         this->size--;
         this->maxSize--;

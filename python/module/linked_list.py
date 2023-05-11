@@ -18,8 +18,9 @@ class Linked_list:
     def tail(self):
         return self.__last
         
-    def get(self, index: int) -> any:
-        if self.is_empty(): return None
+    def get(self, index: int) -> Any:
+        if index < 0 or index >= self.size:
+            raise Exception('List index out range')
         if index == 0:
             return self.__head.data
         elif index == self.size - 1:
@@ -44,8 +45,8 @@ class Linked_list:
         self.__last = new_data
 
     def pop(self, index: int) -> None:
-        if self.is_empty() or index >= self.__size:
-            return
+        if index < 0 or index >= self.size:
+            raise Exception('List index out range')
         current: Node = self.__head
         prev: Node = self.__head
         length: int = self.size

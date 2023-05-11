@@ -16,7 +16,11 @@ int main()
     cout <<"tamaño: "<< number.getSize() << endl;
     number.reverse();
     cout <<"Lista: "<< number.toString() << endl;
-    number.pop(2);
+    try{
+        number.pop(0);
+    }catch(exception &e){
+        cout << e.what() << endl;
+    }
     number.add(5);
     cout <<"Lista: "<< number.toString() << endl;
     number.reverse();

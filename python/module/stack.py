@@ -25,7 +25,7 @@ class Stack:
         self.__top = new_node
     
     def pop(self):
-        if self.is_empty(): return
+        if self.is_empty(): raise Exception("Stack is empty")
         self.__top = self.__top.next
         self.__size -= 1
         

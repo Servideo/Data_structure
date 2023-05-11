@@ -11,7 +11,7 @@ public class LinkedList<T> {
   }
 
   public Node<T> get(int index) {
-    if (this.isEmpty()) return null;
+    if (index < 0 || index >= this.size) throw new Error("List index out range");
     Node<T> current = this.head;
     if (index == 0) return current; else if (
       index == this.size - 1
@@ -28,19 +28,7 @@ public class LinkedList<T> {
   public Node<T> getTail(){
     return this.last;
   }
-
-  public void setHead(Node<T> head){
-    this.head = head;
-  }
-
-  public void setTail(Node<T> tail){
-    this.last = tail;
-  }
-
-  public void setSize(int size){
-    this.size = size;
-  }
-
+  
   public int getSize() {
     return this.size;
   }
@@ -48,6 +36,11 @@ public class LinkedList<T> {
   public boolean isEmpty() {
     if (this.head == null) return true;
     return false;
+  }
+
+  public void clear(){
+    this.head = this.last = null;
+    this.size = 0;
   }
 
   public void add(T data) {
@@ -62,7 +55,7 @@ public class LinkedList<T> {
   }
 
   public void pop(int index) {
-    if (this.isEmpty() || index >= this.size) return;
+    if (index < 0 || index >= this.size) throw new Error("List index out range");
     Node<T> current = this.head;
     Node<T> prev = this.head;
     int length = this.getSize();

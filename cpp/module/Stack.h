@@ -49,7 +49,7 @@ public:
     void pop()
     {
         if (this->isEmpty())
-            return;
+            throw std::invalid_argument("Stack is empty");
         Node<T> *temp = this->top;
         this->top = temp->next;
         this->size--;

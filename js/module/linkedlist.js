@@ -1,6 +1,6 @@
 "use strict";
 
-import Node from "./node.js";
+import {Node} from "./node.js";
 
 export class LinkedList {
   #head;
@@ -14,14 +14,24 @@ export class LinkedList {
   getSize() {
     return this.#size;
   }
+
+  getHead(){
+    return this.#head;
+  }
+
+  getTail(){
+    return this.#last;
+  }
+
   get(index) {
-    if (this.isEmpty()) return;
+    if (index >= this.#size || index < 0) throw new Error("List index out range of list");
     else if (index === 0) return this.#head.getData();
     else if (index === this.#size - 1) return this.#last.getData();
     let current = this.#head.getNext();
     for (let i = 1; i < index; i++) current = current.getNext();
     return current.getData();
   }
+
   isEmpty(){
     if (this.#head == null) return true;
     return false;
@@ -38,7 +48,8 @@ export class LinkedList {
     this.#last = newNode;
   }
   pop(index) {
-    if (this.isEmpty() || index >= this.#size) return;
+    if (index >= this.#size || index < 0)
+      throw new Error("List index out range of list");
     let current = this.head;
     let prev = this.#head;
     let length = this.getSize();

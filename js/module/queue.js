@@ -1,6 +1,6 @@
 "use strict";
 
-import Node from "./node.js";
+import {Node} from "./node.js";
 
 export class Queque {
   #front;
@@ -45,7 +45,7 @@ export class Queque {
   }
 
   dequeue() {
-    if (this.isEmpty()) return;
+    if (this.isEmpty()) throw new Error("Queue is empty");
     this.#front = this.#front.getNext();
     this.#size--;
     if (this.#front == null) this.#rear == null;

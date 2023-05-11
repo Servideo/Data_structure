@@ -77,7 +77,7 @@ public class Queue<T> {
     
     public void dequeue(){
         if(this.isEmpty())
-            return;
+            throw new Error("Queue is empty");
         Node<T> current = this.front;
         this.front = current.next;
         this.maxSize--;
