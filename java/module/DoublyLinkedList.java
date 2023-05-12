@@ -22,7 +22,7 @@ public class DoublyLinkedList<T> {
       }
     public Node<T> get(int index) {
         if (index >= this.size || index < 0)
-          throw new IllegalArgumentException("List index out range");
+          throw new IndexOutOfBoundsException("List index out range");
         Node<T> current = this.head;
         if (index == 0) return current; else if (
           index == this.size - 1
