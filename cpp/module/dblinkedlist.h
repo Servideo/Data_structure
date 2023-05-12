@@ -64,7 +64,6 @@ public:
         newNode->prev = this->tail;
         this->tail->next = newNode;
         this->tail = newNode;
-
     }
     
     void pop(int index)

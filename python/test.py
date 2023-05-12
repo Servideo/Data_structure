@@ -2,6 +2,7 @@ from module.linked_list import Linked_list
 from module.queue import Queue
 from module.stack import Stack
 from module.node import Node
+from module.doublylinked import Doubly_linked_list
         
 def insert_linked(array: list[str]) -> Linked_list:
     llist: Linked_list = Linked_list()
@@ -22,13 +23,19 @@ def insert_stack(array: list[str]) -> Stack:
     return stack
         
 def main():
-    e = input().split()
-    q = insert_queue(e)
-    q.enqueue('1')
-    q.dequeue()
-    q.enqueue('18')
-    q.enqueue('80')
-    q.dequeue()
-    print(q.front)
+    llist: Doubly_linked_list = Doubly_linked_list()
+    llist.add(1)
+    llist.add(2)
+    llist.add(3)
+    llist.add(4)
+    try:
+        prompt: str = int(input("ingresa un indice: "))
+        llist.pop(prompt)
+    except Exception as err:
+        print(err)
+    print(f"lista: {llist}")
+    llist.reverse()
+    print(f"lista: {llist}")
+    
 if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-from node import Node
+from .node import Node
 from typing import Any
 
 class Doubly_linked_list():
@@ -46,18 +46,22 @@ class Doubly_linked_list():
         if index < 0 or index >= self.size:
             raise Exception('List index out range')
         size: int = self.size
-        self.__size -=1
+        self.__size -= 1
         if index == 0:
+            self.__head.next.prev = self.__head.prev
             self.__head = self.__head.next
             return
         elif index == size - 1:
             self.__tail.prev.next = self.__tail.next
             self.__tail = self.__tail.prev
-        temp:Node = self.head.next
+            return
+        temp: Node = self.head.next
+        prev: Node = temp.prev
         for _ in range(1, index):
+            prev = temp
             temp = temp.next
-        temp.prev.next = temp.next
-        temp.next.prev = temp.prev
+        prev.next = temp.next
+        temp.next.prev = prev
     
     def is_empty(self) -> bool:
         if self.__head is None:
