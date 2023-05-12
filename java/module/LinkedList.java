@@ -11,7 +11,8 @@ public class LinkedList<T> {
   }
 
   public Node<T> get(int index) {
-    if (index < 0 || index >= this.size) throw new Error("List index out range");
+    if (index < 0 || index >= this.size) 
+      throw new IllegalArgumentException("List index out range");
     Node<T> current = this.head;
     if (index == 0) return current; else if (
       index == this.size - 1
@@ -55,7 +56,8 @@ public class LinkedList<T> {
   }
 
   public void pop(int index) {
-    if (index < 0 || index >= this.size) throw new Error("List index out range");
+    if (index < 0 || index >= this.size)
+      throw new IllegalArgumentException("List index out range");
     Node<T> current = this.head;
     Node<T> prev = this.head;
     int length = this.getSize();

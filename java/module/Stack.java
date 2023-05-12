@@ -30,7 +30,7 @@ public class Stack <T>{
 
     public void pop(){
         if(this.isEmpty()){
-            throw new Error("Stack is empty");
+            throw new IllegalArgumentException("Stack is empty");
         }
         this.top = this.top.next;
         this.size--;

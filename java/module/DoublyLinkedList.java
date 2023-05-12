@@ -21,7 +21,8 @@ public class DoublyLinkedList<T> {
         return this.size;
       }
     public Node<T> get(int index) {
-        if (index >= this.size || index < 0) throw new Error("List index out range");
+        if (index >= this.size || index < 0)
+          throw new IllegalArgumentException("List index out range");
         Node<T> current = this.head;
         if (index == 0) return current; else if (
           index == this.size - 1
@@ -31,6 +32,7 @@ public class DoublyLinkedList<T> {
         return current;
 
       }
+
     public boolean isEmpty() {
         if (this.head == null) return true;
         return false;
@@ -43,6 +45,7 @@ public class DoublyLinkedList<T> {
 
     public void add(T data){
         Node<T> newData = new Node<>(data);
+        this.size++;
         if(this.isEmpty()){
             this.head = this.tail = newData;
             return;
@@ -53,10 +56,12 @@ public class DoublyLinkedList<T> {
     }
 
     public void pop(int index){
-        if(index >= this.size || index < 0) throw new Error("List index out range");
+        if(index >= this.size || index < 0)  
+          throw new IllegalArgumentException("List index out range");
         int size = this.getSize();
         this.size--;
         if (index == 0){
+           this.head.next.prev = this.head.prev;
             this.head = this.head.next;
             return;
         }
@@ -67,7 +72,7 @@ public class DoublyLinkedList<T> {
         }
         Node<T> temp = this.head.next;
         Node<T> prev = temp.prev;
-        for(int i = 1; i < size; i++){
+        for(int i = 1; i < index; i++){
             prev = temp;
             temp = temp.next;
         }
