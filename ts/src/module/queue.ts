@@ -20,7 +20,7 @@ export class Queue<T>{
 
     back(): Node<T>{
         if(this.isEmpty())
-            throw new Error("List empty");
+            throw new Error("Queue empty.");
         return this.#rear!;
     }
 
