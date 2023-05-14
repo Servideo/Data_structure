@@ -1,6 +1,6 @@
 import {Node} from "./node.js"
 
-class Queue<T>{
+export class Queue<T>{
     #front: Node<T> | null;
     #rear: Node<T> | null;
     #size: number;
