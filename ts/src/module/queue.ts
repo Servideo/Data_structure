@@ -53,7 +53,7 @@ export class Queue<T>{
 
     dequeue(): void{
         if(this.isEmpty())
-            throw new Error("List empty");
+            throw new Error("Queue empty.");
         this.#front = this.#front!.next;
         if(this.#front == null)
             this.#rear = null;
