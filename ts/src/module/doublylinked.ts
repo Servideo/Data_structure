@@ -57,7 +57,7 @@ export class DoublyLinkedList<T>{
     }
 
     pop(index: number): void {
-        if(this.isEmpty() || index > this.#size)
+        if(this.isEmpty() || index > this.#size || index < 0)
             throw new RangeError("list index out range.");
         const size: number = this.size();
         this.#size--;

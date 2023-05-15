@@ -53,7 +53,7 @@ export class DoublyLinkedList {
         this.#tail = newNode;
     }
     pop(index) {
-        if (this.isEmpty() || index > this.#size)
+        if (this.isEmpty() || index > this.#size || index < 0)
             throw new RangeError("list index out range.");
         const size = this.size();
         this.#size--;

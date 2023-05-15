@@ -13,22 +13,29 @@ function split(str, separator = " ") {
 }
 const main = () => {
     const p = document.getElementById("param");
-    let input = prompt("escribe una lista de elementos");
+    let input;
+    do {
+        input = prompt("escribe una lista de elementos: ");
+    } while (!input);
     let llist = split(input);
     p.innerHTML += `<br>Primer elemento: ${llist.head().data}<br>`;
     p.innerHTML += `<br>Ultimo elemento: ${llist.tail().data} <br> `;
     p.innerHTML += `lista: ${llist.toString()}<br>`;
     try {
-        input = prompt("escribe un indice: ");
+        do {
+            input = prompt("escribe un indice: ");
+        } while (!input);
         let index = parseInt(input);
         llist.pop(index);
-        alert(`elemento removido de la posición (${index}).`);
+        alert(`Elemento removido de la posición (${index}).`);
     }
     catch (e) {
         alert(`${e.message}\nEl elemento no pudo ser removido.`);
     }
     llist.reverse();
-    p.innerHTML += `<br> Lista: ${llist.toString()}<br>`;
+    p.innerHTML += `<br>Primer elemento: ${llist.head().data}<br>`;
+    p.innerHTML += `<br>Ultimo elemento: ${llist.tail().data} <br> `;
+    p.innerHTML += `lista: ${llist.toString()}<br>`;
 };
 main();
 //# sourceMappingURL=main.js.map
