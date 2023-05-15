@@ -63,8 +63,8 @@ export class LinkedList<T> {
       this.#head = this.#head!.next;
       return;
     }
-    let current: Node<T> = this.#head!.next!;
-    let prev: Node<T> = this.#head!;
+    let current: Node<T> | null = this.#head!.next!;
+    let prev: Node<T> | null = this.#head!;
     for (let i = 1; i < index; i++) {
       prev = current!;
       current = current!.next!;

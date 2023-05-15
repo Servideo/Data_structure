@@ -1,6 +1,6 @@
-import { LinkedList } from "./module/linkedList.js";
+import { DoublyLinkedList } from "./module/doublylinked.js";
 function split(str, separator = " ") {
-    let llist = new LinkedList();
+    let llist = new DoublyLinkedList();
     let start = 0;
     let end = str.indexOf(separator);
     while (end != -1) {
@@ -15,21 +15,20 @@ const main = () => {
     const p = document.getElementById("param");
     let input = prompt("escribe una lista de elementos");
     let llist = split(input);
-    console.log(`lista: ${llist.toString()}`);
+    p.innerHTML += `<br>Primer elemento: ${llist.head().data}<br>`;
+    p.innerHTML += `<br>Ultimo elemento: ${llist.tail().data} <br> `;
     p.innerHTML += `lista: ${llist.toString()}<br>`;
     try {
         input = prompt("escribe un indice: ");
         let index = parseInt(input);
         llist.pop(index);
-        console.log(`elemento removido de la posición (${index}).`);
+        alert(`elemento removido de la posición (${index}).`);
     }
     catch (e) {
-        console.log(e.message);
-        console.log("el elemento no pudo ser removido.");
+        alert(`${e.message}\nEl elemento no pudo ser removido.`);
     }
     llist.reverse();
-    console.log(`lista: ${llist.toString()}`);
-    p.innerHTML += `Lista: <br>${llist.toString()}<br>`;
+    p.innerHTML += `<br> Lista: ${llist.toString()}<br>`;
 };
 main();
 //# sourceMappingURL=main.js.map

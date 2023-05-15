@@ -1,16 +1,49 @@
 import { Node } from "./node.js";
-import { LinkedList } from "./linkedList.js";
-export class DoublyLinkedList extends LinkedList {
+export class DoublyLinkedList {
     #head;
     #tail;
     #size;
     constructor() {
-        super();
+        this.#head = this.#tail = null;
+        this.#size = 0;
+    }
+    head() {
+        if (this.isEmpty())
+            throw new Error("List empty");
+        return this.#head;
+    }
+    tail() {
+        if (this.isEmpty())
+            throw new Error("List empty");
+        return this.#tail;
+    }
+    size() {
+        return this.#size;
+    }
+    get(index) {
+        if (this.isEmpty() || index >= this.#size || index < 0)
+            throw new RangeError("list index out range.");
+        else if (index == 0)
+            return this.#head;
+        else if (index == this.#size - 1)
+            return this.#tail;
+        let current = this.#head.next;
+        for (let i = 1; i < index; i++)
+            current = current.next;
+        return current;
+    }
+    isEmpty() {
+        if (this.#head == null)
+            return true;
+        return false;
+    }
+    clear() {
         this.#head = this.#tail = null;
         this.#size = 0;
     }
     add(data) {
         const newNode = new Node(data);
+        this.#size++;
         if (this.isEmpty()) {
             this.#head = this.#tail = newNode;
             return;
@@ -40,8 +73,21 @@ export class DoublyLinkedList extends LinkedList {
             prev = temp;
             temp = temp.next;
         }
-        temp.next.prev = prev;
         prev.next = temp.next;
+        temp.next.prev = prev;
+    }
+    toString() {
+        if (this.isEmpty())
+            return "[]";
+        let msg = "";
+        let current = this.#head;
+        msg += `${current.data}`;
+        current = current.next;
+        while (current) {
+            msg += ` ${current.data}`;
+            current = current.next;
+        }
+        return msg;
     }
     reverse() {
         if (this.isEmpty())
