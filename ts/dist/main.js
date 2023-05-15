@@ -1,5 +1,5 @@
 import { LinkedList } from "./module/linkedList.js";
-function split(str, separator = ' ') {
+function split(str, separator = " ") {
     let llist = new LinkedList();
     let start = 0;
     let end = str.indexOf(separator);
@@ -12,13 +12,10 @@ function split(str, separator = ' ') {
     return llist;
 }
 const main = () => {
-    const p = document.getElementById('param');
+    const p = document.getElementById("param");
     let input = prompt("escribe una lista de elementos");
     let llist = split(input);
     console.log(`lista: ${llist.toString()}`);
-    let getList = new Promise((res, rej) => {
-        res(llist.toString());
-    });
     p.innerHTML += `lista: ${llist.toString()}<br>`;
     try {
         input = prompt("escribe un indice: ");
@@ -28,11 +25,11 @@ const main = () => {
     }
     catch (e) {
         console.log(e.message);
-        console.log('el elemento no pudo ser removido.');
+        console.log("el elemento no pudo ser removido.");
     }
     llist.reverse();
     console.log(`lista: ${llist.toString()}`);
-    p.innerHTML += `<br>${llist.toString()}<br>`;
+    p.innerHTML += `Lista: <br>${llist.toString()}<br>`;
 };
 main();
 //# sourceMappingURL=main.js.map

@@ -76,7 +76,7 @@ export class LinkedList {
     toString() {
         if (this.isEmpty())
             return "[]";
-        let msg = '';
+        let msg = "";
         let current = this.#head;
         msg += `${current.data}`;
         current = current.next;
