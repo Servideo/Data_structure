@@ -1,6 +1,7 @@
 from .node import Node
 from typing import Any
 
+
 class Linked_list:
     def __init__(self):
         self.__head = self.__last = None
@@ -9,26 +10,30 @@ class Linked_list:
     @property
     def size(self) -> int:
         return self.__size
-    
+
     @property
-    def head(self):
+    def head(self) -> Node:
+        if self.is_empty():
+            raise Exception('List empty.')
         return self.__head
-    
+
     @property
-    def tail(self):
+    def tail(self) -> Node:
+        if self.is_empty():
+            raise Exception('List empty.')
         return self.__last
-        
-    def get(self, index: int) -> Any:
+
+    def get(self, index: int) -> Node:
         if index < 0 or index >= self.size:
-            raise Exception('List index out range')
+            raise IndexError('List index out range.')
         if index == 0:
-            return self.__head.data
+            return self.__head
         elif index == self.size - 1:
-            return self.__last.data
+            return self.__last
         current: Node = self.__head.next
         for _ in range(1, index):
             current = current.next
-        return current.data
+        return current
 
     def is_empty(self) -> bool:
         if (self.__head is None):
@@ -46,7 +51,7 @@ class Linked_list:
 
     def pop(self, index: int) -> None:
         if index < 0 or index >= self.size:
-            raise Exception('List index out range')
+            raise IndexError('List index out range.')
         current: Node = self.__head
         prev: Node = self.__head
         length: int = self.size

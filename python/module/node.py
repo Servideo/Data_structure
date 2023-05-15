@@ -1,12 +1,12 @@
 from typing import Any
 
+
 class Node:
     def __init__(self, data: Any):
         self.__prev: Node | None = None
-        self.__data: any = data
+        self.__data: Any = data
         self.__next: Node | None = None
 
-    # getter
     @property
     def data(self) -> Any:
         return self.__data
@@ -19,7 +19,6 @@ class Node:
     def prev(self) -> Any:
         return self.__prev
 
-    # setter
     @data.setter
     def data(self, data: Any) -> None:
         self.__data = data

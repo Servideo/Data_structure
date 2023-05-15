@@ -36,7 +36,7 @@ export class Queque {
 
   enqueue(data) {
     this.#size++;
-    let newNode = new Node(data);
+    const newNode = new Node(data);
     if (this.isEmpty()) {
       this.#rear = this.#rear = newNode;
       return;

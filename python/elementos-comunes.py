@@ -14,12 +14,12 @@ def remove_common(llist1:Linked_list, llist2:Linked_list) -> None:
     index1:int = 0
     index2:int = llist2.size - 1
     while index1 < llist1.size and index2 >= 0:
-        if index1 == 0 and llist1.get(index1) == llist2.get(index2):
+        if index1 == 0 and llist1.get(index1).data == llist2.get(index2).data:
             llist1.pop(index1)
             llist2.pop(index2)
             index2 = llist2.size - 1
             continue
-        elif llist1.get(index1) == llist2.get(index2):
+        elif llist1.get(index1).data == llist2.get(index2).data:
             llist1.pop(index1)
             llist2.pop(index2)
             index1 -= 1

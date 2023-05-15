@@ -11,20 +11,22 @@ export class DoublyLinkedList {
     this.#size = 0;
   }
 
-  getSize() {
+  size() {
     return this.#size;
   }
 
-  getHead() {
+  head() {
+    if(this.isEmpty()) throw new Error("List empty");
     return this.#head;
   }
 
-  getTail() {
+  tail() {
+    if(this.isEmpty()) throw new Error("List empty");
     return this.#tail;
   }
 
   get(index) {
-    if (index >= this.#size || index < 0) 
+    if (index >= this.#size || index < 0 || this.isEmpty()) 
       throw new Error("List index out range of list");
     else if (index == 0) return this.#head;
     else if (index == this.#size - 1) return this.#tail;
@@ -46,19 +48,19 @@ export class DoublyLinkedList {
   }
 
   add(data) {
-    let newNode = new Node(data);
+    const newNode = new Node(data);
     this.#size++;
     if (this.isEmpty()) {
       this.#head = this.#tail = newNode;
       return;
     }
     newNode.setPrev(this.#tail);
-    this.#tail.setNext(newNode);
+    this.#tails.setNext(newNode);
     this.#tail = newNode;
   }
 
   pop(index) {
-    if (index >= this.#size || index < 0) 
+    if (index >= this.#size || index < 0 || this.isEmpty()) 
       throw new Error("List index out range of list");
     let size = this.getSize();
     this.#size--;

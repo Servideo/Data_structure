@@ -38,7 +38,7 @@ export class LinkedList {
   }
 
   add(data) {
-    let newNode = new Node(data);
+    const newNode = new Node(data);
     this.#size++;
     if (this.isEmpty()) {
       this.#head = this.#last = newNode;
@@ -48,7 +48,7 @@ export class LinkedList {
     this.#last = newNode;
   }
   pop(index) {
-    if (index >= this.#size || index < 0)
+    if (index >= this.#size || index < 0 || this.isEmpty())
       throw new Error("List index out range of list");
     let current = this.head;
     let prev = this.#head;
@@ -66,6 +66,7 @@ export class LinkedList {
     if (index == length - 1) {
       prev.next = this.last.next;
       this.last = prev;
+      return;
     }
     prev.next = current.next;
   }

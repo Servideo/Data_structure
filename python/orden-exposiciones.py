@@ -1,6 +1,7 @@
 from module.linked_list import Linked_list
+from typing import Any
 
-def orden_expo(array:list[any], llist:Linked_list) -> None:
+def orden_expo(array:list[Any], llist:Linked_list) -> None:
     index1:int = 0
     index2:int = len(array) - 1
     change:bool = False

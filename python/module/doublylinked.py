@@ -1,50 +1,51 @@
 from .node import Node
 from typing import Any
 
+
 class Doubly_linked_list():
-    
-    def __init__ (self):
+
+    def __init__(self):
         self.__head: Node = None
         self.__tail: Node = None
         self.__size: int = 0
-    
-    def get(self, index:int) -> Node:
+
+    def get(self, index: int) -> Node:
         if index < 0 or index >= self.size:
-            raise Exception('List index out range')
+            raise IndexError('List index out range.')
         if index == 0:
             return self.head
         elif index == self.size - 1:
             return self.tail
-        temp:Node = self.head.next
+        temp: Node = self.head.next
         for _ in range(1, index):
             temp = temp.next
         return temp
-     
+
     @property
-    def head(self):
+    def head(self) -> Node:
         return self.__head
-    
+
     @property
-    def tail(self):
+    def tail(self) -> Node:
         return self.__tail
-        
+
     @property
-    def size(self):
+    def size(self) -> int:
         return self.__size
-    
-    def add(self, data: Any):
+
+    def add(self, data: Any) -> None:
         newNode: Node = Node(data)
-        self.__size +=1
+        self.__size += 1
         if self.is_empty():
             self.__head = self.__tail = newNode
             return
         newNode.prev = self.__tail
         self.__tail.next = newNode
-        self.__tail = newNode        
-    
-    def pop(self, index: int):
+        self.__tail = newNode
+
+    def pop(self, index: int) -> None:
         if index < 0 or index >= self.size:
-            raise Exception('List index out range')
+            raise IndexError('List index out range.')
         size: int = self.size
         self.__size -= 1
         if index == 0:
@@ -62,16 +63,16 @@ class Doubly_linked_list():
             temp = temp.next
         prev.next = temp.next
         temp.next.prev = prev
-    
+
     def is_empty(self) -> bool:
         if self.__head is None:
             return True
         return False
-    
-    def clear(self):
+
+    def clear(self) -> None:
         self.__head = self.__tail = None
         self.__size = 0
-    
+
     def __str__(self) -> str:
         if self.is_empty():
             return "[]"
@@ -82,8 +83,8 @@ class Doubly_linked_list():
             msg += f' {temp.data}'
             temp = temp.next
         return msg
-    
-    def reverse(self):
+
+    def reverse(self) -> None:
         if self.is_empty() or self.size < 2:
             return
         self.__tail = self.__head

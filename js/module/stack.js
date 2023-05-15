@@ -24,7 +24,7 @@ export class Stack{
     }
 
     push(data){
-        let newNode = new Node(data);
+        const newNode = new Node(data);
         this.#size++;
         if(this.isEmpty()){
             this.#top = newNode;

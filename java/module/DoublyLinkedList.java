@@ -21,8 +21,8 @@ public class DoublyLinkedList<T> {
         return this.size;
       }
     public Node<T> get(int index) {
-        if (index >= this.size || index < 0)
-          throw new IndexOutOfBoundsException("List index out range");
+        if (index > this.size || index < 0)
+          throw new IndexOutOfBoundsException("List index out range.");
         Node<T> current = this.head;
         if (index == 0) return current; else if (
           index == this.size - 1
@@ -56,8 +56,8 @@ public class DoublyLinkedList<T> {
     }
 
     public void pop(int index){
-        if(index >= this.size || index < 0)  
-          throw new IllegalArgumentException("List index out range");
+        if(index > this.size || index < 0)  
+          throw new IndexOutOfBoundsException("List index out range.");
         int size = this.getSize();
         this.size--;
         if (index == 0){
