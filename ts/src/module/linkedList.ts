@@ -25,7 +25,7 @@ export class LinkedList<T> {
 
   get(index: number): Node<T> {
     if (this.isEmpty() || index >= this.#size || index < 0)
-      throw new RangeError("list index out range");
+      throw new RangeError("list index out range.");
     else if (index == 0) return this.#head!;
     else if (index == this.#size - 1) return this.#tail!;
     let current = this.#head!.next;
@@ -56,18 +56,18 @@ export class LinkedList<T> {
 
   pop(index: number): void {
     if (this.isEmpty() || index >= this.#size || index < 0)
-      throw new RangeError("list index out range");
-    let size = this.size();
+      throw new RangeError("list index out range.");
+    const size = this.size();
     this.#size--;
     if (index == 0) {
       this.#head = this.#head!.next;
       return;
     }
-    let current = this.#head!.next;
-    let prev = this.#head;
+    let current: Node<T> = this.#head!.next!;
+    let prev: Node<T> = this.#head!;
     for (let i = 1; i < index; i++) {
-      prev = current;
-      current = current!.next;
+      prev = current!;
+      current = current!.next!;
     }
     if (index == size - 1) {
       prev!.next = current!.next;
@@ -80,7 +80,7 @@ export class LinkedList<T> {
   toString(): string {
     if (this.isEmpty()) return "[]";
     let msg = "";
-    let current = this.#head!;
+    let current: Node<T> = this.#head!;
     msg += `${current.data}`;
     current = current!.next!;
     while (current) {
@@ -91,7 +91,7 @@ export class LinkedList<T> {
   }
 
   reverse(): void {
-    if (this.isEmpty()) throw new Error("List empty");
+    if (this.isEmpty()) throw new Error("List empty.");
     this.#tail = this.#head;
     let prev: Node<T> | null = null;
     let current: Node<T> | null = this.#head;

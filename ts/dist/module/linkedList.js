@@ -22,7 +22,7 @@ export class LinkedList {
     }
     get(index) {
         if (this.isEmpty() || index >= this.#size || index < 0)
-            throw new RangeError("list index out range");
+            throw new RangeError("list index out range.");
         else if (index == 0)
             return this.#head;
         else if (index == this.#size - 1)
@@ -53,8 +53,8 @@ export class LinkedList {
     }
     pop(index) {
         if (this.isEmpty() || index >= this.#size || index < 0)
-            throw new RangeError("list index out range");
-        let size = this.size();
+            throw new RangeError("list index out range.");
+        const size = this.size();
         this.#size--;
         if (index == 0) {
             this.#head = this.#head.next;
@@ -88,7 +88,7 @@ export class LinkedList {
     }
     reverse() {
         if (this.isEmpty())
-            throw new Error("List empty");
+            throw new Error("List empty.");
         this.#tail = this.#head;
         let prev = null;
         let current = this.#head;
