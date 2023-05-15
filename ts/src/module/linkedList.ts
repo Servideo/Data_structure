@@ -38,12 +38,12 @@ export class LinkedList<T> {
     return false;
   }
 
-  clear():void {
+  clear(): void {
     this.#head = this.#tail = null;
     this.#size = 0;
   }
 
-  add(data: T):void {
+  add(data: T): void {
     const newNode = new Node(data);
     this.#size++;
     if (this.isEmpty()) {
@@ -54,7 +54,7 @@ export class LinkedList<T> {
     this.#tail = newNode;
   }
 
-  pop(index: number):void {
+  pop(index: number): void {
     if (this.isEmpty() || index >= this.#size || index < 0)
       throw new RangeError("list index out range");
     let size = this.size();
@@ -78,25 +78,25 @@ export class LinkedList<T> {
   }
 
   toString(): string {
-    if(this.isEmpty()) return "[]";
-    let msg = '';
+    if (this.isEmpty()) return "[]";
+    let msg = "";
     let current = this.#head!;
     msg += `${current.data}`;
     current = current!.next!;
-    while(current){
-        msg += ` ${current.data}`;
-        current = current!.next!;
+    while (current) {
+      msg += ` ${current.data}`;
+      current = current!.next!;
     }
     return msg;
   }
 
-  reverse():void {
+  reverse(): void {
     if (this.isEmpty()) throw new Error("List empty");
     this.#tail = this.#head;
     let prev: Node<T> | null = null;
     let current: Node<T> | null = this.#head;
     let next: Node<T> | null;
-    while(current){
+    while (current) {
       next = current.next;
       current.next = prev;
       prev = current;
