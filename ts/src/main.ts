@@ -27,7 +27,7 @@ function split(str: string, separator: string = " "): DoublyLinkedList<string> {
   return llist;
 }
 
-const main = () => {
+const main = (): void =>  {
   const p = document.getElementById("param");
   let input: string | null | undefined;
   do{
