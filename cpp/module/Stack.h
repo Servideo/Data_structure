@@ -2,15 +2,13 @@
 #include <sstream>
 #include <string>
 
-using std::string;
-
 template <class T>
 class Stack
 {
 private:
     Node<T> *top;
     int size;
-    string converToString(T data)
+    std::string converToString(T data)
     {
         std::stringstream text;
         text << data;
@@ -71,12 +69,12 @@ public:
         delete (temp);
     }
 
-    string toString()
+    std::string toString()
     {
         if (this->isEmpty())
             return "[]";
         Node<T> *temp = this->top;
-        string msg = this->convertToString(temp->data);
+        std::string msg = this->convertToString(temp->data);
         temp = temp->next;
         while (temp)
         {

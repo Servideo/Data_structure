@@ -2,7 +2,6 @@
 #include <sstream>
 #include <string>
 
-using std::string;
 
 template <class T>
 class Queque
@@ -11,7 +10,7 @@ private:
     Node<T> *front, *rear;
     int maxSize;
     int size;
-    string convertToString(T data)
+    std::string convertToString(T data)
     {
         std::stringstream text;
         text << data;
@@ -100,12 +99,12 @@ public:
         delete(temp);
     }
     
-    string toString()
+    std::string toString()
     {
         if (this->isEmpty())
             return "[]";
         Node<T> *temp = this->front;
-        string msg = "["+this->convertToString(temp->data);
+        std::string msg = "["+this->convertToString(temp->data);
         temp = temp->next;
         while (temp)
         {

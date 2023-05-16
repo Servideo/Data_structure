@@ -1,7 +1,6 @@
 #include "node.h"
 #include <string>
 #include <sstream>
-using std::string;
 
 template <class T>
 class LinkedList
@@ -9,7 +8,7 @@ class LinkedList
 private:
     Node<T> *head, *last;
     int size;
-    string convertToString(T element)
+    std::string convertToString(T element)
     {
         std::stringstream s;
         s << element;
@@ -98,12 +97,12 @@ public:
         this->head = this->last = NULL;
     }
 
-    string toString()
+    std::string toString()
     {
         if (this->isEmpty())
             return "[]";
         Node<T> *temp = this->head;
-        string msg = this->convertToString(temp->data);
+        std::string msg = this->convertToString(temp->data);
         temp = temp->next;
         while (temp)
         {
