@@ -21,19 +21,19 @@ public:
         this->head = this->last = NULL;
         this->size = 0;
     }
-    T get(int index)
+    Node<T> *get(int index)
     {
         if (index >= this->size || index < 0)
             throw std::invalid_argument("List index out range");
         Node<T> *current = this->head;
         if (index == 0)
-            return current->data;
+            return current;
         else if (index == this->size - 1)
-            return this->last->data;
+            return this->last;
         current = current->next;
         for (int i = 1; i < index; i++)
             current = current->next;
-        return current->data;
+        return current;
     }
 
     int getSize()

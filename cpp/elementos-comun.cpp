@@ -22,13 +22,13 @@ void removeCommon(LinkedList<int>& llist1, LinkedList<int>& llist2)
     int index2 = llist2.getSize() - 1;
     while(index1 < llist1.getSize() && index2 >= 0)
     {
-        if(index1 == 0 && llist1.get(index1) == llist2.get(index2)){
+        if(index1 == 0 && llist1.get(index1)->data == llist2.get(index2)->data){
             llist1.pop(index1);
             llist2.pop(index2);
             index2 = llist2.getSize() - 1;
             continue;
         }
-        else if(llist1.get(index1) == llist2.get(index2)){
+        else if(llist1.get(index1)->data == llist2.get(index2)->data){
             llist1.pop(index1);
             llist2.pop(index2);
             index1--;

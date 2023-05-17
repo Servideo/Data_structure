@@ -1,42 +1,50 @@
-#include "./module/linkedlist.h"
-#include "./module/split.h"
-#include "./module/printvector.h"
 #include <iostream>
 #include <string>
-#include <vector>
+#include "./module/linkedlist.h"
 using namespace std;
 
-template<typename T>
-void ordenExpo(vector<T> array, LinkedList<T>& llist);
-
-int main()
+LinkedList<string> split(string text,string sep=" ")
 {
-    LinkedList<string> llexpo;
-    string input;
-    getline(cin, input);
-    vector<string> lperson = split(input);
-    ordenExpo<string>(lperson, llexpo);
-    cout << llexpo.toString()<<endl;
+    LinkedList<string> llist;
+    int start = 0;
+    int end = text.find(sep);
+    while (end != -1){
+        llist.add(text.substr(start, end - start));
+        start = end + sep.size();
+        end = text.find(sep, start);
+    };
+    llist.add(text.substr(start));
+    return llist;
+}
+
+void ordenExpo(LinkedList<string>& llist1,LinkedList<string>& llist2)
+{
+    int index1 = 0;
+    int index2 = llist1.getSize() - 1;
+    bool changeIndex = false;
+    while (index1 <= index2)
+    {
+        if (changeIndex)
+        {
+            llist2.add(llist1.get(index2)->data);
+            index2--;
+            changeIndex = false;
+            continue;
+        }
+        llist2.add(llist1.get(index1)->data);
+        index1++;
+        changeIndex = true;
+    }
+}
+
+int main(){
+    string name;
+    LinkedList<string> expo;
+    getline(cin, name);
+    LinkedList<string> person = split(name);
+    ordenExpo(person, expo);
+    cout << expo.toString();    
     return 0;
 }
 
 
-template<typename T>
-void ordenExpo(vector<T> array,LinkedList<T>& llist){
-    int count1 = 0;
-    int count2 = array.size() - 1;
-    bool flag = false;
-    while (count1 <= count2)
-    {
-        if (flag)
-        {
-            llist.add(array[count2]);
-            count2--;
-            flag = false;
-            continue;
-        }
-        llist.add(array[count1]);
-        count1++;
-        flag = true;
-    }
-}
