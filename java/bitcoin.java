@@ -48,7 +48,7 @@ public class bitcoin {
             llist.pop(0);
             limit = llist.getSize();
         }
-        System.out.println(llday.toString());
+        System.out.print(llday.toString());
     }
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
