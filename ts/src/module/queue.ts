@@ -55,8 +55,7 @@ export class Queue<T> {
   }
 
   isEmpty(): boolean {
-    if (this.#front == null) return true;
-    return false;
+    return this.#front == null ? true : false;
   }
 
   clear(): void {

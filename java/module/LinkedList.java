@@ -12,7 +12,7 @@ public class LinkedList<T> {
 
   public Node<T> get(int index) {
     if (index < 0 || index > this.size) 
-      throw new IllegalArgumentException("List index out range");
+      throw new IndexOutOfBoundsException("List index out range");
     Node<T> current = this.head;
     if (index == 0) return current; else if (
       index == this.size - 1
@@ -34,9 +34,8 @@ public class LinkedList<T> {
     return this.size;
   }
 
-  public boolean isEmpty() {
-    if (this.head == null) return true;
-    return false;
+  public boolean isEmpty(){
+    return (this.head == null) ? true : false;
   }
 
   public void clear(){

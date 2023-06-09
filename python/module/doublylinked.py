@@ -65,9 +65,7 @@ class Doubly_linked_list():
         temp.next.prev = prev
 
     def is_empty(self) -> bool:
-        if self.__head is None:
-            return True
-        return False
+        return True if self.__head is None else False
 
     def clear(self) -> None:
         self.__head = self.__tail = None
@@ -97,3 +95,11 @@ class Doubly_linked_list():
             prev = current
             current = next
         self.__head = prev
+
+    def copy(self):
+        llist: Doubly_linked_list = Doubly_linked_list()
+        temp: Node = self.__head
+        while temp:
+            llist.add(temp.data)
+            temp = temp.next
+        return llist

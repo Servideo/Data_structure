@@ -1,12 +1,18 @@
-#include "node.h"
+#pragma once
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
+
 #include <string>
 #include <sstream>
+
+#include "node.hpp"
+
 
 template <class T>
 class LinkedList
 {
 private:
-    Node<T> *head, *last;
+    Node<T> *head, *tail;
     int size;
     std::string convertToString(T element)
     {
@@ -16,11 +22,14 @@ private:
     }
 
 public:
-    LinkedList<T>()
+    LinkedList()
     {
-        this->head = this->last = NULL;
+        this->head = this->tail = nullptr;
         this->size = 0;
     }
+
+    ~LinkedList(){}
+    
     Node<T> *get(int index)
     {
         if (index >= this->size || index < 0)
@@ -29,36 +38,44 @@ public:
         if (index == 0)
             return current;
         else if (index == this->size - 1)
-            return this->last;
+            return this->tail;
         current = current->next;
         for (int i = 1; i < index; i++)
             current = current->next;
         return current;
     }
 
+    Node<T> *getHead()
+    {
+        return this->head;
+    }
+
+    Node<T> *getTail()
+    {
+        return this->tail;
+    }
+
     int getSize()
     {
         return this->size;
     }
-    // metodos
+    
     bool isEmpty()
     {
-        if (this->head == NULL)
-            return true;
-        return false;
+        return (this->head == nullptr) ? true : false;
     }
 
     void add(T data)
     {
         this->size++;
-        Node<T>* newNode = new Node(data);
+        Node<T>* newNode = new Node<T>(data);
         if (this->isEmpty())
         {
-            this->head = this->last = newNode;
+            this->head = this->tail = newNode;
             return;
         }
-        this->last->next = newNode;
-        this->last = newNode;
+        this->tail->next = newNode;
+        this->tail = newNode;
     }
 
     void pop(int index)
@@ -83,8 +100,8 @@ public:
         }
         if (index == length - 1)
         {
-            prev->next = this->last->next;
-            this->last = prev;
+            prev->next = this->tail->next;
+            this->tail = prev;
             delete(current);
             return;
         }
@@ -94,7 +111,7 @@ public:
 
     void clear()
     {
-        this->head = this->last = NULL;
+        this->head = this->tail = nullptr;
     }
 
     std::string toString()
@@ -116,10 +133,10 @@ public:
     {
         if (this->isEmpty() || this->size < 2)
             return;
-        Node<T> *prev = NULL;
+        Node<T> *prev = nullptr;
         Node<T> *current = this->head;
         Node<T> *next;
-        this->last = this->head;
+        this->tail = this->head;
         while (current)
         {
             next = current->next;
@@ -130,3 +147,4 @@ public:
         this->head = prev;
     }
 };
+#endif

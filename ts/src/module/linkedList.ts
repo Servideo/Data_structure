@@ -34,8 +34,7 @@ export class LinkedList<T> {
   }
 
   isEmpty(): boolean {
-    if (this.#head == null) return true;
-    return false;
+    return this.#head == null ? true : false;
   }
 
   clear(): void {

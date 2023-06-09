@@ -1,12 +1,17 @@
-#include "node.h"
+#pragma once
+#ifndef DBLINKEDLIST_H
+#define DBLINKEDLIST_H
+
 #include <string>
 #include <sstream>
+
+#include "node.hpp"
+
 template <class T>
 class DoublyLinkedList
 {
 private:
-    Node<T> *head;
-    Node<T> *tail;
+    Node<T> *head, *tail;
     int size;
 
     std::string convertoString(T data)
@@ -17,11 +22,13 @@ private:
     }
 
 public:
-    DoublyLinkedList<T>()
+    DoublyLinkedList()
     {
-        this->head = this->tail = NULL;
+        this->head = this->tail = nullptr;
         this->size = 0;
     }
+    
+    ~DoublyLinkedList(){}
 
     Node<T>* getHead()
     {
@@ -54,7 +61,7 @@ public:
 
     void add(T data)
     {
-        Node<T>* newNode = new Node(data);
+        Node<T>* newNode = new Node<T>(data);
         this->size++;
         if(this->isEmpty())
         {
@@ -102,14 +109,12 @@ public:
 
     bool isEmpty()
     {
-        if (this->head == NULL)
-            return true;
-        return false;
+        return (this->head == nullptr) ? true : false;
     }
 
     void clear()
     {
-        this->head = this->tail = NULL;
+        this->head = this->tail = nullptr;
         this->size = 0;
     }
 
@@ -149,3 +154,5 @@ public:
         this->head = prev;
     }
 };
+
+#endif

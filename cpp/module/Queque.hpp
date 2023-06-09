@@ -1,6 +1,11 @@
-#include "node.h"
+#pragma once
+#ifndef QUEQUE_H
+#define QUEQUE_H
+
 #include <sstream>
 #include <string>
+
+#include "node.hpp"
 
 
 template <class T>
@@ -18,24 +23,26 @@ private:
     }
 
 public:
-    Queque<T>(int maxSize = 0)
+    Queque(int maxSize = 0)
     {
-        this->front = this->rear = NULL;
+        this->front = this->rear = nullptr;
         this->size = 0;
         this->maxSize = maxSize;
     }
 
-    Node<T>* getFront()
+    ~Queque() {}
+
+    Node<T> *getFront()
     {
-        if(this->isEmpty())
-            return NULL;
+        if (this->isEmpty())
+            return nullptr;
         return this->front;
     }
 
-    Node<T>* getBack()
+    Node<T> *getBack()
     {
-        if(this->isEmpty())
-            return NULL;
+        if (this->isEmpty())
+            return nullptr;
         return this->rear;
     }
 
@@ -51,22 +58,21 @@ public:
 
     void setMaxSize(int maxSize = 0)
     {
-        if(maxSize < this->maxSize) return;
+        if (maxSize < this->maxSize)
+            return;
         this->maxSize = maxSize;
     }
-    
+
     bool isEmpty()
     {
-        if (this->front == NULL)
-            return true;
-        return false;
+        return (this->front == nullptr) ? true : false;
     }
 
     void enqueue(T data)
     {
-        if(this->maxSize > 0 && this->size >= this->maxSize)
+        if (this->maxSize > 0 && this->size >= this->maxSize)
             return;
-        Node<T> *temp = new Node(data);
+        Node<T> *temp = new Node<T>(data);
         this->size++;
         if (this->isEmpty())
         {
@@ -86,32 +92,34 @@ public:
         this->maxSize--;
         this->front = this->front->next;
 
-        if (this->front == NULL)
-            this->rear == NULL;
-        delete (temp);
+        if (this->front == nullptr)
+            this->rear == nullptr;
+        delete temp;
     }
 
     void clear()
     {
         Node<T> *temp = this->front;
-        this->front = this->rear = NULL;
+        this->front = this->rear = nullptr;
         this->size = this->maxSize = 0;
-        delete(temp);
+        delete temp;
     }
-    
+
     std::string toString()
     {
         if (this->isEmpty())
             return "[]";
         Node<T> *temp = this->front;
-        std::string msg = "["+this->convertToString(temp->data);
+        std::string msg = "[" + this->convertToString(temp->data);
         temp = temp->next;
         while (temp)
         {
             msg += " " + this->convertToString(temp->data);
             temp = temp->next;
         }
-        msg +="]";
+        msg += "]";
         return msg;
     }
 };
+
+#endif

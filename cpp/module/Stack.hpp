@@ -1,13 +1,20 @@
-#include "node.h"
+#pragma once
+#ifndef STACK_H
+#define STACK_H
+
 #include <sstream>
 #include <string>
+
+#include "node.hpp"
+
 
 template <class T>
 class Stack
 {
 private:
-    Node<T> *top;
+    Node<T> *top, *tail;
     int size;
+
     std::string converToString(T data)
     {
         std::stringstream text;
@@ -16,11 +23,13 @@ private:
     }
 
 public:
-    Stack<T>()
+    Stack()
     {
-        this->top = NULL;
+        this->top = this->tail = nullptr;
         this->size = 0;
     }
+
+    ~Stack() {}
 
     int getSize()
     {
@@ -29,16 +38,24 @@ public:
 
     Node<T> *peek()
     {
+        if (this->isEmpty()) throw std::invalid_argument("Stack is empty");
         return this->top;
+    }
+
+    Node<T> *getTail()
+    {
+        if (this->isEmpty()) throw std::invalid_argument("Stack is empty");
+        return this->tail;
     }
 
     void push(T data)
     {
-        Node<T> *newNode = new Node(data);
+        Node<T> *newNode = new Node<T>(data);
         this->size++;
         if (this->isEmpty())
         {
-            this->top = newNode;
+            this->top = this->tail = newNode;
+            return;
         }
         newNode->next = this->top;
         this->top = newNode;
@@ -48,23 +65,23 @@ public:
     {
         if (this->isEmpty())
             throw std::invalid_argument("Stack is empty");
+        this->size--;
         Node<T> *temp = this->top;
         this->top = temp->next;
-        this->size--;
+        if (this->top == nullptr)
+            this->tail == nullptr;
         delete (temp);
     }
 
     bool isEmpty()
     {
-        if (this->top == NULL)
-            return true;
-        return false;
+        return (this->top == nullptr) ? true : false;
     }
 
     void clear()
     {
         Node<T> *temp = this->top;
-        this->top = NULL;
+        this->top = this->tail = nullptr;
         this->size = 0;
         delete (temp);
     }
@@ -74,13 +91,15 @@ public:
         if (this->isEmpty())
             return "[]";
         Node<T> *temp = this->top;
-        std::string msg = this->convertToString(temp->data);
+        std::string msg = this->converToString(temp->data);
         temp = temp->next;
         while (temp)
         {
-            msg += " " + this->convertToString(temp->data);
+            msg += " " + this->converToString(temp->data);
             temp = temp->next;
         }
         return msg;
     }
 };
+
+#endif

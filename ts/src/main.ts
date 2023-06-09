@@ -1,18 +1,18 @@
 import { LinkedList } from "./module/linkedList.js";
-import { DoublyLinkedList } from "./module/doublylinked.js";
+import { DoublyLinkedList} from "./module/doublylinked.js";
 
-// function split(str: string, separator: string = " "): LinkedList<string> {
-//   let llist: LinkedList<string> = new LinkedList();
-//   let start: number = 0;
-//   let end: number = str.indexOf(separator);
-//   while (end != -1) {
-//     llist.add(str.substring(start, end));
-//     start = end + separator.length;
-//     end = str.indexOf(separator, start);
-//   }
-//   llist.add(str.substring(start));
-//   return llist;
-// }
+function splitToLinkedList(str: string, separator: string = " "): LinkedList<string> {
+  let llist: LinkedList<string> = new LinkedList();
+  let start: number = 0;
+  let end: number = str.indexOf(separator);
+  while (end != -1) {
+    llist.add(str.substring(start, end));
+    start = end + separator.length;
+    end = str.indexOf(separator, start);
+  }
+  llist.add(str.substring(start));
+  return llist;
+}
 
 function split(str: string, separator: string = " "): DoublyLinkedList<string> {
   let llist: DoublyLinkedList<string> = new DoublyLinkedList();

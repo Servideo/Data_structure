@@ -12,11 +12,11 @@ class Node:
         return self.__data
 
     @property
-    def next(self) -> Any:
+    def next(self):
         return self.__next
 
     @property
-    def prev(self) -> Any:
+    def prev(self):
         return self.__prev
 
     @data.setter
@@ -24,9 +24,9 @@ class Node:
         self.__data = data
 
     @next.setter
-    def next(self, next: Any) -> None:
+    def next(self, next) -> None:
         self.__next = next
 
     @prev.setter
-    def prev(self, prev: Any) -> None:
+    def prev(self, prev) -> None:
         self.__prev = prev

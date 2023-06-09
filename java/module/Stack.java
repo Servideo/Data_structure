@@ -37,9 +37,7 @@ public class Stack <T>{
     }
 
     public boolean isEmpty(){
-        if (this.top == null)
-            return true;
-        return false;
+        return (this.top == null) ? true : false;
     }
 
     public void clear(){

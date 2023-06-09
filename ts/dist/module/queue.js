@@ -51,9 +51,7 @@ export class Queue {
             this.#rear = null;
     }
     isEmpty() {
-        if (this.#front == null)
-            return true;
-        return false;
+        return this.#front == null ? true : false;
     }
     clear() {
         this.#front = this.#rear = null;

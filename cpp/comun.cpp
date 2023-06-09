@@ -1,19 +1,19 @@
 #include <iostream>
 #include <string>
 #include "./module/linkedlist.hpp"
-using namespace std;
-LinkedList<int> split(string text, string sep=" ")
+
+LinkedList<int> split(std::string text, std::string sep=" ")
 {
     LinkedList<int> number;
     int start = 0;
     int end = text.find(sep);
     while(end != -1)
     {
-        number.add(stoi(text.substr(start, end)));
+        number.add(std::stoi(text.substr(start, end)));
         start = end + sep.size();
         end = text.find(sep, start);
     }
-    number.add(stoi(text.substr(start)));
+    number.add(std::stoi(text.substr(start)));
     return number;
 }
 void removeCommon(LinkedList<int>& llist1, LinkedList<int>& llist2)
@@ -41,13 +41,13 @@ void removeCommon(LinkedList<int>& llist1, LinkedList<int>& llist2)
 
 int main()
 {
-    string input1;
-    string input2;
-    getline(cin, input1);
-    getline(cin, input2);
+    std::string input1;
+    std::getline(std::cin, input1);
     LinkedList<int> lnumber1 = split(input1);
-    LinkedList<int> lnumber2 = split(input2);
+    input1 = "";
+    std::getline(std::cin, input1);
+    LinkedList<int> lnumber2 = split(input1);
     removeCommon(lnumber1, lnumber2);
-    cout<<lnumber1.toString() <<"\n"<<lnumber2.toString();
+	std::cout<<lnumber1.toString() <<"\n"<<lnumber2.toString();
     return 0;
 }

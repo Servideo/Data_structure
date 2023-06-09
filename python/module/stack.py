@@ -9,8 +9,8 @@ class Stack:
 
     def peek(self):
         if self.is_empty():
-            return None
-        return self.__top.data
+            raise Exception("Stack is empty")
+        return self.__top
 
     @property
     def size(self) -> int:
@@ -32,9 +32,7 @@ class Stack:
         self.__size -= 1
 
     def is_empty(self) -> bool:
-        if self.__top is None:
-            return True
-        return False
+        return True if self.__top is None else False
 
     def clear(self) -> None:
         self.__top = None

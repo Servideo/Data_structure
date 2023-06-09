@@ -8,3 +8,4 @@ test.java
 test.class
 test.exe
 target
+__pycache__

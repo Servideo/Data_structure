@@ -50,9 +50,7 @@ class Queue:
             self.__rear = None
 
     def is_empty(self) -> bool:
-        if self.__front is None:
-            return True
-        return False
+        return True if self.__front is None else False
 
     def clear(self) -> None:
         self.__front = self.__rear = None

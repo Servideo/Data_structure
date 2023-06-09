@@ -1,4 +1,17 @@
+import { LinkedList } from "./module/linkedList.js";
 import { DoublyLinkedList } from "./module/doublylinked.js";
+function splitToLinkedList(str, separator = " ") {
+    let llist = new LinkedList();
+    let start = 0;
+    let end = str.indexOf(separator);
+    while (end != -1) {
+        llist.add(str.substring(start, end));
+        start = end + separator.length;
+        end = str.indexOf(separator, start);
+    }
+    llist.add(str.substring(start));
+    return llist;
+}
 function split(str, separator = " ") {
     let llist = new DoublyLinkedList();
     let start = 0;

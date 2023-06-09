@@ -4,6 +4,7 @@ public class DoublyLinkedList<T> {
     private Node<T> head;
     private Node<T> tail;
     private int size;
+
     public DoublyLinkedList(){
         this.head = this.tail = null;
         this.size = 0;
@@ -33,10 +34,9 @@ public class DoublyLinkedList<T> {
 
       }
 
-    public boolean isEmpty() {
-        if (this.head == null) return true;
-        return false;
-      }
+  public boolean isEmpty(){
+    return (this.head == null) ? true : false;
+  }
 
     public void clear(){
         this.head = this.tail = null;

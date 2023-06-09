@@ -1,39 +1,43 @@
-from module.linked_list import Linked_list
+from module.doublylinked import Doubly_linked_list
+from module.node import Node
 
-
-
-def split(text:str, sep:str = ' ') -> Linked_list:
-    llist:Linked_list = Linked_list()
-    start:int = 0
-    end:int = text.find(sep)
+def split(text:str, sep:str = ' ') -> Doubly_linked_list:
+    llist:Doubly_linked_list = Doubly_linked_list()
+    start = 0
+    end = text.find(sep)
     while end != -1:
         llist.add(text[start:end])
         start = end + len(sep)
         end = text.find(sep, start)
-    llist.add(text[start:])
+    llist.add(text[start:len(text)])
     return llist
     
     
-def orden_expo(llist1:Linked_list, llist2:Linked_list) -> None:
-    index1:int = 0
-    index2:int = llist1.size - 1
+def orden_expo(list1: Doubly_linked_list) -> Doubly_linked_list:
+    lexpo:Doubly_linked_list = Doubly_linked_list()
+    first: Node = list1.head
+    end: Node = list1.tail
     change:bool = False
-    while index1 <= index2:
-        if change:
-            llist2.add(llist1.get(index2))
-            index2 -= 1
+    while first != end:
+        if(change):
+            lexpo.add(end.data)
+            end = end.prev
             change = False
             continue
-        llist2.add(llist1.get(index1))
-        index1 += 1
+        lexpo.add(first.data)
+        first = first.next
         change = True
-    
+    lexpo.add(end.data)
+    return lexpo
 
 def main() -> None:
-    lexpo:Linked_list = Linked_list()
     nickname:str = input()
-    lperson:Linked_list = split(nickname)
-    orden_expo(lperson, lexpo)
+    lperson: Doubly_linked_list = split(nickname)
+    lexpo: Doubly_linked_list = orden_expo(lperson)
+    print(f"{lexpo}",end="")
+    c: Doubly_linked_list = lexpo.copy()
+    c.add("Z")
+    print(f"\n{c}")
     print(f"{lexpo}",end="")
 
 if __name__ == "__main__":

@@ -48,9 +48,7 @@ public class Queue<T> {
     }
     
     public boolean isEmpty(){
-        if (this.front == null)
-            return true;
-        return false;
+        return (this.front == null) ? true : false;
     }
 
     

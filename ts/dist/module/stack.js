@@ -31,9 +31,7 @@ export class Stack {
         this.#size--;
     }
     isEmpty() {
-        if (this.#top == null)
-            return true;
-        return false;
+        return this.#top == null ? true : false;
     }
     clear() {
         this.#top = null;

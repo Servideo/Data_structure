@@ -35,8 +35,7 @@ export class Stack<T> {
   }
 
   isEmpty(): boolean {
-    if (this.#top == null) return true;
-    return false;
+    return this.#top == null ? true : false;
   }
 
   clear(): void {

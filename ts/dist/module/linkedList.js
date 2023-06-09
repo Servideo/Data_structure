@@ -33,9 +33,7 @@ export class LinkedList {
         return current;
     }
     isEmpty() {
-        if (this.#head == null)
-            return true;
-        return false;
+        return this.#head == null ? true : false;
     }
     clear() {
         this.#head = this.#tail = null;

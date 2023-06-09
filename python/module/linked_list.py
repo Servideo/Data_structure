@@ -36,9 +36,7 @@ class Linked_list:
         return current
 
     def is_empty(self) -> bool:
-        if (self.__head is None):
-            return True
-        return False
+        return True if self.__head is None else False
 
     def add(self, data: Any) -> None:
         new_data: Node = Node(data)
@@ -57,7 +55,9 @@ class Linked_list:
         length: int = self.size
         self.__size -= 1
         if index == 0:
+            temp:Node = self.__head
             self.__head = current.next
+            del temp
             return
         current = current.next
         for _ in range(1, index):
@@ -66,8 +66,10 @@ class Linked_list:
         if index == length - 1:
             prev.next = self.__last.next
             self.__last = prev
+            del current
             return
         prev.next = current.next
+        del current
 
     def __str__(self) -> str:
         if self.is_empty():
@@ -93,3 +95,11 @@ class Linked_list:
             current = next
 
         self.__head = prev
+
+    def copy(self):
+        llist: Linked_list = Linked_list()
+        temp: Node = self.__head
+        while temp:
+            llist.add(temp.data)
+            temp = temp.next
+        return llist
