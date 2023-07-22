@@ -35,6 +35,10 @@ class Linked_list:
             current = current.next
         return current
 
+    def create_list(self, lists:list) -> None:
+        for element in lists:
+            self.add(element)
+        
     def is_empty(self) -> bool:
         return True if self.__head is None else False
 

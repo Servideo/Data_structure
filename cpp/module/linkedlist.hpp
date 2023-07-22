@@ -1,10 +1,10 @@
 #pragma once
-#ifndef LINKEDLIST_H
-#define LINKEDLIST_H
+#ifndef LINKEDLIST_HPP
+#define LINKEDLIST_HPP
 
 #include <string>
 #include <sstream>
-
+#include <vector>
 #include "node.hpp"
 
 
@@ -12,8 +12,10 @@ template <class T>
 class LinkedList
 {
 private:
-    Node<T> *head, *tail;
-    int size;
+    Node<T> *head = nullptr;
+    Node<T> *tail = nullptr;
+    int size = 0;
+
     std::string convertToString(T element)
     {
         std::stringstream s;
@@ -24,8 +26,6 @@ private:
 public:
     LinkedList()
     {
-        this->head = this->tail = nullptr;
-        this->size = 0;
     }
 
     ~LinkedList(){}
@@ -76,6 +76,14 @@ public:
         }
         this->tail->next = newNode;
         this->tail = newNode;
+    }
+
+    void createList(const std::vector<T> &array)
+    {
+        for (auto i : array)
+        {
+            this->add(i);
+        }
     }
 
     void pop(int index)
@@ -131,7 +139,7 @@ public:
     
     void reverse()
     {
-        if (this->isEmpty() || this->size < 2)
+        if (this->isEmpty() || this->size < 1)
             return;
         Node<T> *prev = nullptr;
         Node<T> *current = this->head;

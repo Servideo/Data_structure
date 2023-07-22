@@ -1,6 +1,7 @@
 import { LinkedList } from "./module/linkedList.js";
 import { DoublyLinkedList} from "./module/doublylinked.js";
 
+
 function splitToLinkedList(str: string, separator: string = " "): LinkedList<string> {
   let llist: LinkedList<string> = new LinkedList();
   let start: number = 0;

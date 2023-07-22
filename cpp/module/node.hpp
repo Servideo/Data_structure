@@ -1,17 +1,17 @@
 #pragma once
-#ifndef NODE_H
-#define NODE_H
+#ifndef NODE_HPP
+#define NODE_HPP
 
 template <class T>
 class Node
 {
 public:
-    Node *prev, *next;
+    Node<T> *prev = nullptr;
+    Node<T> *next = nullptr;
     T data;
-    Node(T data)
+
+    Node(T data) : data(data)
     {
-        this->prev = this->next = nullptr;
-        this->data = data;
     }
 
     ~Node() {}

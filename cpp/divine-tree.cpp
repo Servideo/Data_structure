@@ -41,10 +41,10 @@ int divineTree(BinaryTree<int> &tree)
     TreeNode<int> *root = tree.getRoot();
     int maxNumber = root->data;
     int temp = 0;
-    int sizeTree = tree.levelOfTree(root);
-    for (int level = 1; level <= sizeTree; level++)
+    int sizeTree = tree.high();
+    for (int level = 1; level < sizeTree; level++)
     {
-        tree.viewLevel(root, level, viewLevel);
+        viewLevel = tree.viewLevel(level);
         temp = sumList(viewLevel);
         if (temp > maxNumber) maxNumber = temp;
         viewLevel.clear();
@@ -55,11 +55,10 @@ int divineTree(BinaryTree<int> &tree)
 void showLevel(BinaryTree<int> &tree)
 {
     LinkedList<int> viewLevel;
-    TreeNode<int> *root = tree.getRoot();
-    int sizeTree = tree.levelOfTree(root);
-    for (int level = 0; level <= sizeTree; level++)
+    int sizeTree = tree.high();
+    for (int level = 0; level < sizeTree; level++)
     {
-        tree.viewLevel(root, level, viewLevel);
+        viewLevel = tree.viewLevel(level);
         std::cout << "\n" << "nivel " << level << ":\n" << viewLevel.toString() << "\n";
         viewLevel.clear();
     } 
@@ -73,7 +72,7 @@ int main()
     std::vector<int> number = split(input);
     tree.createTree(number);
     int sumLevel = divineTree(tree);
-    std::cout << "sumatoria mas alta: " << sumLevel;
     showLevel(tree);
+    std::cout << "sumatoria mas alta: " << sumLevel;
     return 0;
 }

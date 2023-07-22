@@ -1,12 +1,10 @@
 import { Node } from "./node.js";
 
 export class LinkedList<T> {
-  #head: Node<T> | null;
-  #tail: Node<T> | null;
-  #size: number;
+  #head: Node<T> | null = null;
+  #tail: Node<T> | null = null;
+  #size: number = 0;
   constructor() {
-    this.#head = this.#tail = null;
-    this.#size = 0;
   }
 
   head(): Node<T> {
@@ -43,7 +41,7 @@ export class LinkedList<T> {
   }
 
   add(data: T): void {
-    const newNode = new Node(data);
+    const newNode = new Node<T>(data);
     this.#size++;
     if (this.isEmpty()) {
       this.#head = this.#tail = newNode;

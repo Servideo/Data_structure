@@ -1,11 +1,9 @@
 export class TreeNode {
-    rightChild;
+    rightChild = null;
     data;
-    leftChild;
+    leftChild = null;
     constructor(data) {
         this.data = data;
-        this.rightChild = null;
-        this.leftChild = null;
     }
 }
 //# sourceMappingURL=treenode.js.map

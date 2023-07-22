@@ -1,11 +1,9 @@
 import { Node } from "./node.js";
 export class DoublyLinkedList {
-    #head;
-    #tail;
-    #size;
+    #head = null;
+    #tail = null;
+    #size = 0;
     constructor() {
-        this.#head = this.#tail = null;
-        this.#size = 0;
     }
     head() {
         if (this.isEmpty())

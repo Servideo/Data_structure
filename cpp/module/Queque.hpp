@@ -1,6 +1,6 @@
 #pragma once
-#ifndef QUEQUE_H
-#define QUEQUE_H
+#ifndef QUEQUE_HPP
+#define QUEQUE_HPP
 
 #include <sstream>
 #include <string>

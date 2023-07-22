@@ -13,7 +13,7 @@ from .stack import Stack
 class Binary_tree:
 
     def __init__(self):
-        self.root: Tree_node = None
+        self.root: Tree_node | None = None
 
     def insert_value(self, data: Any) -> None:
         new_data: Tree_node = Tree_node(data)
@@ -52,51 +52,49 @@ class Binary_tree:
         del temp
 
     @cache
-    def traverse_level_of_tree(self, node: Tree_node) -> int:
+    def __high(self, node: Tree_node) -> int:
         if node is None:
-            return 0
-        elif node.right_child is None and node.left_child is None:
-            return 0
-        left: int = self.traverse_level_of_tree(node.left_child) + 1
-        right: int = self.traverse_level_of_tree(node.right_child) + 1
-        if left > right:
-            return left
-        return right
-
-    def level_of_tree(self) -> int:
-        return self.traverse_level_of_tree(self.root)
+            return -1
+        left: int = self.__high(node.left_child) + 1
+        max_int: int = left
+        right: int = self.__high(node.right_child) + 1
+        if right > max_int:
+            max_int = right
+        return max_int
 
     def high(self) -> int:
-        return self.level_of_tree() + 1
+        if self.is_empty():
+            raise Exception("Tree is empty")
+        return self.__high(self.root) + 1
 
     @cache
-    def traverse_view_level(self, node: Tree_node, level: int, llist: Linked_list) -> None:
+    def __view_level(self, node: Tree_node, level: int, llist: Linked_list) -> None:
         if node is None:
             return
         if level == 0:
             llist.add(node.data)
-        self.traverse_view_level(node.left_child, level - 1, llist)
-        self.traverse_view_level(node.right_child, level - 1, llist)
+        self.__view_level(node.left_child, level - 1, llist)
+        self.__view_level(node.right_child, level - 1, llist)
 
     def view_level(self, level: int) -> Linked_list:
         if self.is_empty():
             raise Exception("Tree is empty")
         llist: Linked_list = Linked_list()
-        self.traverse_view_level(self.root, level, llist)
+        self.__view_level(self.root, level, llist)
         return llist
 
     @cache
-    def travel_pre_order(self, root: Tree_node, llist: Linked_list) -> None:
+    def __recursive_pre_order(self, root: Tree_node, llist: Linked_list) -> None:
         if root:
             llist.add(root.data)
-            self.travel_pre_order(root.left_child, llist)
-            self.travel_pre_order(root.right_child, llist)
+            self.__recursive_pre_order(root.left_child, llist)
+            self.__recursive_pre_order(root.right_child, llist)
 
     def recursive_pre_order(self) -> Linked_list:
         if self.is_empty():
             raise Exception("Tree is empty")
         llist: Linked_list = Linked_list()
-        self.travel_pre_order(self.root, llist)
+        self.__recursive_pre_order(self.root, llist)
         return llist
 
     def pre_order(self) -> Linked_list:
@@ -122,13 +120,13 @@ class Binary_tree:
         return llist
 
     @cache
-    def travel_post_order(self, root: Tree_node, llist: Linked_list) -> None:
+    def __recursive_post_order(self, root: Tree_node, llist: Linked_list) -> None:
         if root:
-            self.travel_post_order(root.left_child, llist)
-            self.travel_post_order(root.right_child, llist)
+            self.__recursive_post_order(root.left_child, llist)
+            self.__recursive_post_order(root.right_child, llist)
             llist.add(root.data)
 
-    def recursive_post_order(self) -> Linked_list:
+    def __recursive_post_order(self) -> Linked_list:
         if self.is_empty():
             raise Exception("Tree is empty")
         llist: Linked_list = Linked_list()
@@ -149,9 +147,9 @@ class Binary_tree:
             current = prev_stack.peek().data
             current_stack.push(current)
             prev_stack.pop()
-            if current.left_child:
+            if current.left_child is not None:
                 prev_stack.push(current.left_child)
-            if current.right_child:
+            if current.right_child is not None:
                 prev_stack.push(current.right_child)
 
         while not current_stack.is_empty():
@@ -162,18 +160,18 @@ class Binary_tree:
         return llist
 
     @cache
-    def travel_in_order(self, root: Tree_node, llist: Linked_list) -> None:
+    def __recursive_in_order(self, root: Tree_node, llist: Linked_list) -> None:
         if not root:
             return
-        self.travel_in_order(root.left_child, llist)
+        self.__recursive_in_order(root.left_child, llist)
         llist.add(root.data)
-        self.travel_in_order(root.right_child, llist)
+        self.__recursive_in_order(root.right_child, llist)
 
     def recursive_in_order(self) -> Linked_list:
         if self.is_empty():
             raise Exception("tree empty")
         llist: Linked_list = Linked_list()
-        self.travel_in_order(self.root, llist)
+        self.__recursive_in_order(self.root, llist)
         return llist
 
     def in_order(self) -> Linked_list:
@@ -182,7 +180,7 @@ class Binary_tree:
         llist: Linked_list = Linked_list()
         stack: Stack = Stack()
         current: Tree_node = self.root
-        while True:
+        while not stack.is_empty() or current is not None:
             if current is not None:
                 stack.push(current)
                 current = current.left_child
@@ -211,3 +209,75 @@ class Binary_tree:
                 queue.enqueue(temp.right_child)
             queue.dequeue()
         return llist
+
+    def search(self, key: Any) -> Tree_node:
+        if self.is_empty():
+            raise Exception("Tree is empty")
+
+        elif self.root.data == key:
+            return self.root
+
+        current: Tree_node | None = None
+        queue: Queue = Queue()
+        queue.enqueue(self.root)
+
+        while not queue.is_empty():
+            current = queue.front.data
+            queue.dequeue()
+
+            if current.data == key:
+                return current
+
+            if current.left_child:
+                queue.enqueue(current.left_child)
+
+            if current.right_child:
+                queue.enqueue(current.right_child)
+
+        if current is None:
+            raise Exception("item not found.")
+
+    def delete(self, key: Any) -> None:
+        if self.is_empty():
+            raise Exception("Tree is empty.")
+
+        if self.root.left_child is None and self.root.right_child is None:
+            if self.root.data == key:
+                self.root = None
+                return
+            else:
+                raise Exception("item not found.")
+
+        current: Tree_node | None = None
+        target: Tree_node | None = None
+        last: Tree_node | None = None
+        queue: Queue = Queue()
+        queue.enqueue(self.root)
+
+        while not queue.is_empty():
+            current = queue.front.data
+            queue.dequeue()
+
+            if current.data == key:
+                target = current
+
+            if current.left_child:
+                last = current
+                queue.enqueue(current.left_child)
+
+            if current.right_child:
+                last = current
+                queue.enqueue(current.right_child)
+
+        if target is not None:
+            target.data = current.data
+            if last.left_child == current:
+                last.left_child = None
+
+            else:
+                last.right_child = None
+
+            del current
+
+        else:
+            raise Exception("item no found.")

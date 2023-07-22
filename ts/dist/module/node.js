@@ -1,9 +1,8 @@
 export class Node {
-    prev;
+    prev = null;
     data;
-    next;
+    next = null;
     constructor(data) {
-        this.next = this.prev = null;
         this.data = data;
     }
 }

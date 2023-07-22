@@ -3,9 +3,9 @@ from typing import Any
 class Tree_node:
     
     def __init__(self, data: Any):
-        self.__data = data
-        self.__right_child = None
-        self.__left_child = None
+        self.__data: Any = data
+        self.__right_child: Tree_node | None = None
+        self.__left_child: Tree_node | None = None
     
     @property
     def data(self) -> Any:

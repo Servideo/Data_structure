@@ -22,20 +22,25 @@ def day_to_sell(llist: Linked_list) -> None:
         if limit - 1 == 0:
             lday.add(count)
             break
+        
         for j in range(1, limit):
             if llist.get(0).data > llist.get(j).data and j != llist.size - 1:
                 count += 1
                 continue
+            
             elif llist.get(j).data > llist.get(0).data:
                 count += 1
                 break
+            
             elif j == llist.size - 1:
                 if llist.get(0).data > llist.get(j).data:
                     count = 0
                     break
+                
                 elif llist.get(0).data == llist.get(j).data:
                     count = 0
                     break
+                
             count += 1
         lday.add(count)
         llist.pop(0)

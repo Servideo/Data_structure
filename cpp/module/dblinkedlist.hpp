@@ -1,9 +1,10 @@
 #pragma once
-#ifndef DBLINKEDLIST_H
-#define DBLINKEDLIST_H
+#ifndef DBLINKEDLIST_HPP
+#define DBLINKEDLIST_HPP
 
 #include <string>
 #include <sstream>
+#include <vector>
 
 #include "node.hpp"
 
@@ -11,15 +12,23 @@ template <class T>
 class DoublyLinkedList
 {
 private:
-    Node<T> *head, *tail;
-    int size;
+    Node<T> *head = nullptr;
+    Node<T> *tail = nullptr;
+    int size = 0;
 
-    std::string convertoString(T data)
+    std::string convertToString(T element)
     {
-        std::stringstream text;
-        text << data;
-        return text.str();
+        std::stringstream s;
+        s << element;
+        return s.str();
     }
+
+public:
+    LinkedList()
+    {
+    }
+
+    ~LinkedList(){}
 
 public:
     DoublyLinkedList()
@@ -71,6 +80,14 @@ public:
         newNode->prev = this->tail;
         this->tail->next = newNode;
         this->tail = newNode;
+    }
+    
+    void createList(const std::vector<T> &array)
+    {
+        for (int i = 0; i < array.size(); i++)
+        {
+            this->add(array[i]);
+        }
     }
     
     void pop(int index)
