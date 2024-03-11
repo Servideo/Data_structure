@@ -60,7 +60,7 @@ export class LinkedList<T> {
       this.#head = this.#head!.next;
       return;
     }
-    let current: Node<T> | null = this.#head!.next!;
+    let current: Node<T> | null = this.#head!.next;
     let prev: Node<T> | null = this.#head!;
     for (let i = 1; i < index; i++) {
       prev = current!;

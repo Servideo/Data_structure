@@ -1,4 +1,5 @@
 package module;
+import java.util.ArrayList;
 
 public class DoublyLinkedList<T> {
     private Node<T> head;
@@ -92,7 +93,12 @@ public class DoublyLinkedList<T> {
         }
         return msg;
       }
-    
+    public void createList(ArrayList<T> Array)
+    {
+      for (T element : Array) {
+        add(element);
+      }
+    }
       public void reverse() {
         if (this.isEmpty() || this.size < 2) return;
         this.tail = this.head;

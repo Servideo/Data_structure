@@ -24,13 +24,6 @@ private:
     }
 
 public:
-    LinkedList()
-    {
-    }
-
-    ~LinkedList(){}
-
-public:
     DoublyLinkedList()
     {
         this->head = this->tail = nullptr;
@@ -84,9 +77,9 @@ public:
     
     void createList(const std::vector<T> &array)
     {
-        for (int i = 0; i < array.size(); i++)
+        for (T element : array)
         {
-            this->add(array[i]);
+            this->add(element);
         }
     }
     

@@ -4,7 +4,8 @@ from typing import Any
 
 class Linked_list:
     def __init__(self):
-        self.__head = self.__last = None
+        self.__head:Node | None = None
+        self.__last:Node | None = None
         self.__size = 0
 
     @property
@@ -35,7 +36,7 @@ class Linked_list:
             current = current.next
         return current
 
-    def create_list(self, lists:list) -> None:
+    def create_list(self, lists:list[Any]) -> None:
         for element in lists:
             self.add(element)
         
